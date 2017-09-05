@@ -1,0 +1,806 @@
+---
+output: html_document
+---
+
+<style> 
+
+custsty {
+  /*background-image:url(C:/path/mypng.png);*/ 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.boxText {
+     font-size:0.9em;
+
+}
+    
+table {
+    border-collapse: collapse;
+    width: 980px;
+    height: 400px;
+    /*background-color: #9999FF;*/
+    background-image: none;
+    cell-spacing: 0px;
+    /*padding-left: 0px;*/
+    /*padding-right: 75px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0px solid #BBBBFF;
+    background-color: #CCEEFF;
+    margin: auto;
+}
+
+th {
+    font-color:#FF0000;
+    padding-left: 0px;
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #CCEEFF;
+    cell-spacing: 0px;
+    border: 0px solid #FFFFFF;
+    margin: auto;
+    width: 480px;
+    height: 20px;
+}
+
+td {
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cell-spacing: 0px;
+    border: 0px solid #000000;
+    margin: auto;
+    font-family: arial, verdana, sans-serif;
+    background-color: #CCEEFF;
+    
+    /*width: 480px;*/
+    height: 20px;
+}
+
+tr {
+    margin: auto;
+}
+
+body {
+  background-color: #EEEEEE;
+}
+
+slide:not(.segue)  h2{
+ font-family: "Open Sans Condensed";
+ font-weight: 700;
+ color: #449944;
+ /*background-color: #00FFFF; background of S3 */
+}
+
+
+h2 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:44px;
+    LINE-HEIGHT:54px;
+    color: #449944;
+    padding-top: 10px;
+    padding-bottom: 4px;
+
+}
+
+h3 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:36px;
+    LINE-HEIGHT:54px;
+    color: #449944;
+    padding-top: 10px;
+    padding-bottom: 4px;
+
+}
+
+h4 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:28px;
+    LINE-HEIGHT:42px;
+    color: #202020;
+    padding-top: 6px;
+    padding-bottom: 3px;
+}
+
+h5 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:20px;
+    LINE-HEIGHT:32px;
+    color: #202020;
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+h6 {
+    font-family: arial;
+    font-weight: 200;
+    font-size:18px;
+    LINE-HEIGHT:28px;
+    color: #202020;
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.list-line-1 {
+    LINE-HEIGHT:20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.list-line-middle {
+    LINE-HEIGHT:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.list-line-last {
+    LINE-HEIGHT:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.booktitle {
+    LINE-HEIGHT:20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #101010;
+    font-style: italic;
+}
+
+.columntitle {
+    font-size:16px;
+    LINE-HEIGHT:20px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    text-align: center;
+    color: #101010;
+    }
+
+p {
+    padding-left:10px;
+    font-family: arial, verdana, sans-serif;
+    font-size:24px;
+    color: #112211;
+    color: #1122FF;
+    font-weight: normal;
+}
+
+.tablenote{
+    padding-top: 15px;
+    font-size:20px;
+}
+
+.psmall {
+    padding-left:10px;
+    font-family: arial, verdana, sans-serif;
+    font-size:14px;
+    color: #11FFFF;
+}
+
+img {
+    display: block;
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img {
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0px solid #00FFFF;
+    margin: auto;
+}
+
+caption{
+    padding-bottom: 8px;
+    font-size: 0.5em;
+}
+sub, sup {
+ font-size: 75%;
+ line-height: 0;
+ position: relative;
+ vertical-align: baseline;
+}
+
+.logga img {
+    width: 70%;
+    height: auto;
+}
+
+.title-slide hgroup > h1 {
+  color: #449944; /*  #111111;  #537E43 #EF5150*/  /*#535E43*/
+}
+
+.title-slide hgroup > h2 {
+  color: #110000 ;  /* #537E43 #EF5150*/  /*#535E43*/
+  font-size:44px;
+  LINE-HEIGHT:54px;
+  color: #449944;
+}
+
+.title-slide hgroup > p {
+  font-family: 'Open Sans','Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;
+  text-align: justify;
+  font-size:22px;
+  line-height: 1.5em;
+  padding-left:10px;
+  color: #1111FF;
+  
+  font-family: arial;
+    font-weight: normal;
+    font-size:44px;
+    LINE-HEIGHT:54px;
+    color: #449944;
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+
+.title-slide {
+  background-color: #CBE7B5 /*#CBE7A5; #EDE0CF; ; #CA9F9D*/
+  /* background-image:url(http://goo.gl/EpXln); */
+  
+  /* Reduce Space between Title and Body */
+slides > slide  {
+  margin-top: 15px;
+  background-color: #00FFFF;
+  color: #00FFFF;
+}
+}
+
+</style>
+
+
+### Analysis of Electric Power Reliability
+### US Department of Energy Compliance Reports
+
+<br><br>
+
+### September 5, 2017
+### Marcel Merchat
+
+<br><br>
+
+### Overview of Power Disruption Data
+
+##### This report concerns SAIDA and SAIFI data for more than five hundred electric utility companies that reported to the United States Department of Energy (DOE) according to the IEEE-1366 standard in the three years from 2013-2015. We also discuss the event time data found in Electric Disturbance reports for the years 2011-2016 which are filed on Form OE-417 for larger power disruptions. Jordan Wirfs-Brock of Inside Energy investigated the disturbance reports in August, 2014 and she maintains a website with data over a 15-year period [1]. In this report, we investigate the reliability data which was uniformly reported beginning in 2013 and the detailed event data which became available starting in 2011. 
+
+<br><br>
+
+### Raw Data
+
+##### The raw data for this analysis are DOE annual reports that are Excel files. There are two groups of files. The first group are reliability files with SAIDA and SAIFI data; the second group consists of the detailed event time data reported with Form OE-417. The reliability files named Reliability_2013, Reliability_2014, and Reliability_2015 were obtained from the following website within zip files named f8612013.zip, f8612014.zip, and f8612015.zip at the following website.
+
+##### https://www.eia.gov/electricity/data/eia861/index.html
+
+##### The event time data is mined from files for Form OE-417 starting with the year 2009. Even though the reliability files are more general, the time data files begin with one named "2009_Annual_Summary.csv." These were summary files for government officials concerned with major outages called "Electric Disturbance Events" and have a special column for vandalism and cyber-attacks. These Excel files were obtained from the following website: 
+
+##### https://www.oe.netl.doe.gov/OE417_annual_summary.aspx.
+
+##### Date and time information were converted to a time-series data type. There is information concerning the processing and transforming of the raw data [6] and the reproducibility of this analysis at the end of this report. 
+
+
+```{r setup, results='hide', echo = FALSE, message=F, warning=F, cache=FALSE}
+
+
+library(lattice)
+
+library(ggplot2)
+library(psych)
+library(xtable)
+
+
+library(grid)
+library(gridExtra)
+library(stats)
+
+oldw <- getOption("warn")
+options(warn = -1)
+
+discrete_volts <- function(x){
+    
+    i <- 1
+    for(v in seq_along(x)){
+        if(x[i] > 60 & volts[i] < 70) {
+            x[i] <- 69
+        } else if(x[i] > 50 & x[i] <= 60) {
+            x[i] <- 60
+        } else if(x[i] > 46 & x[i] <= 50) {
+            x[i] <- 50
+        } else if(x[i] > 40 & x[i] <= 45) {
+            x[i] <- 45
+        } else if(x[i] >= 38 & x[i] <= 40) {
+            x[i] <- 40
+        } else if(x[i] > 30 & x[i] <= 35) {
+            x[i] <- 35
+        } else if(x[i] > 25 & x[i] <= 30) {
+            x[i] <- 30
+        } else if (x[i] > 20 & x[i] <= 25) {
+            x[i] <- 25
+        } else if(x[i] > 15 & x[i] <= 20) {
+            x[i] <- 20
+        } else if(x[i] > 12 & x[i] <= 15) {
+            x[i] <- 15
+        } else if (x[i] > 0 & x[i] <= 12){
+            x[i] <- 10
+        } else {
+            break
+        }
+        i <- i + 1
+        
+    }
+    x
+} 
+
+
+```
+
+```{r raw_data, echo=FALSE}
+
+
+# unzip("./xls_data/EIA861/f8612012.zip", files = NULL, list = FALSE, overwrite = TRUE,
+#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2012", unzip = "internal",
+#       setTimes = FALSE)
+# unzip("./xls_data/EIA861/f8612013.zip", files = NULL, list = FALSE, overwrite = TRUE,
+#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2013", unzip = "internal",
+#       setTimes = FALSE)
+# unzip("./xls_data/EIA861/f8612014.zip", files = NULL, list = FALSE, overwrite = TRUE,
+#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2014", unzip = "internal",
+#       setTimes = FALSE)
+# unzip("./xls_data/EIA861/f8612015.zip", files = NULL, list = FALSE, overwrite = TRUE,
+#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2015", unzip = "internal",
+#       setTimes = FALSE)
+
+reliability2013 <- read.csv("Data/Reliability_2013.csv",
+         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+reliability2014 <- read.csv("Data/Reliability_2014.csv",
+         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+reliability2015 <- read.csv("Data/Reliability_2015.csv",
+         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+
+```
+
+```{r processreliabilitydata, echo=FALSE}
+
+good1 <- grepl("\\d", reliability2013[,"SAIDI.With.MED"])
+good2 <- grepl("\\d", reliability2013[,"SAIDI.Without.MED"])
+good3 <- grepl("\\d", reliability2013[,"Number.of.Customers"])
+good4 <- grepl("\\d", reliability2013[,"Highest.Dist..Voltage"])
+good <- good1 * good2 * good3 * good4
+rel2013 <- reliability2013[good==TRUE,][,c(1:13)]
+nocommas <- gsub(",", "", rel2013$Number.of.Customers)
+rel2013$Number.of.Customers <- as.numeric(nocommas)
+rel2013$Highest.Dist..Voltage <- as.numeric(rel2013$Highest.Dist..Voltage)
+rel2013 <- rel2013[order(rel2013$Highest.Dist..Voltage),]
+volts <- as.numeric(rel2013$Highest.Dist..Voltage)
+rel2013[,"Highest_Feeder"] <- discrete_volts(volts)
+
+good1 <- grepl("\\d", reliability2014[,"SAIDI.With.MED"])
+good2 <- grepl("\\d", reliability2014[,"SAIDI.Without.MED"])
+good3 <- grepl("\\d", reliability2014[,"Number.of.Customers"])
+good4 <- grepl("\\d", reliability2014[,"Highest.Dist..Voltage"])
+good <- good1 * good2 * good3 * good4
+rel2014 <- reliability2014[good==TRUE,][,c(1:13)]
+nocommas <- gsub(",", "", rel2014$Number.of.Customers)
+rel2014$Number.of.Customers <- as.numeric(nocommas)
+rel2014$Highest.Dist..Voltage <- as.numeric(rel2014$Highest.Dist..Voltage)
+rel2014 <- rel2014[order(rel2014$Highest.Dist..Voltage),]
+volts <- as.numeric(rel2014$Highest.Dist..Voltage)
+rel2014[,"Highest_Feeder"] <- discrete_volts(volts)
+
+good1 <- grepl("\\d", reliability2015[,"SAIDI.With.MED"])
+good2 <- grepl("\\d", reliability2015[,"SAIDI.Without.MED"])
+good3 <- grepl("\\d", reliability2015[,"Number.of.Customers"])
+good4 <- grepl("\\d", reliability2015[,"Highest.Dist..Voltage"])
+good <- good1 * good2 * good3 * good4
+rel2015 <- reliability2015[good==TRUE,][,c(1:13)]
+nocommas <- gsub(",", "", rel2015$Number.of.Customers)
+rel2015$Number.of.Customers <- as.numeric(nocommas)
+rel2015$Highest.Dist..Voltage <- as.numeric(rel2015$Highest.Dist..Voltage)
+rel2015 <- rel2015[order(rel2015$Highest.Dist..Voltage),]
+volts <- as.numeric(rel2015$Highest.Dist..Voltage)
+rel2015[,"Highest_Feeder"] <- discrete_volts(volts)
+
+rel2013[, "SAIDI.With.MED"] <- as.numeric(rel2013$SAIDI.With.MED)
+
+rel2014$SAIDI.With.MED <- as.numeric(rel2014$SAIDI.With.MED)
+rel2015[, "SAIDI.With.MED"] <- as.numeric(rel2015$SAIDI.With.MED)
+
+rel2013[, "Number.of.Customers"] <- as.numeric(rel2013$Number.of.Customers)
+rel2014[, "Number.of.Customers"] <- as.numeric(rel2014$Number.of.Customers)
+rel2015[, "Number.of.Customers"] <- as.numeric(rel2015$Number.of.Customers)
+
+```
+
+
+```{r processeventdata, echo=FALSE}
+
+
+data2012 <- read.csv("Data/2012_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2012 <- data2012[,c(1:9)]
+data2013 <- read.csv("Data/2013_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2014 <- read.csv("Data/2014_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+
+data2015 <- read.csv("Data/2015_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2015 <- data2015[,-c(1)]
+data2015 <- data2015[,c(1:10)]
+data2015 <- data2015[,-c(7)]
+
+data2016 <- read.csv("Data/2016_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2016 <- data2016[,-c(1)]
+data2016 <- data2016[,c(1:10)]
+data2016 <- data2016[,-c(7)]
+
+data2011 <- read.csv("Data/2011_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2011 <- data2011[,c(1:9)]
+data2012 <- read.csv("Data/2012_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2012 <- data2012[,c(1:9)]
+data2013 <- read.csv("Data/2013_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2014 <- read.csv("Data/2014_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+
+data2015 <- read.csv("Data/2015_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2015 <- data2015[,-c(1)]
+data2015 <- data2015[,c(1:10)]
+data2015 <- data2015[,-c(7)]
+
+data2016 <- read.csv("Data/2016_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+data2016 <- data2016[,-c(1)]
+data2016 <- data2016[,c(1:10)]
+data2016 <- data2016[,-c(7)]
+
+
+```
+
+
+```{r process1, echo=FALSE}
+
+reliability <- rbind(rel2013, rel2014, rel2015)
+
+dat <- rbind(data2011, data2012, data2013, data2014, data2015, data2016)
+
+```
+
+```{r process2, echo=FALSE, results='asis', fig.width=4, fig.height=2}
+
+good <- grepl("\\d",dat[,"Date.Event.Began"])
+
+dat <- dat[good,]
+good <- grepl("^\\d",dat[,"Time.Event.Began"])
+dat <- dat[good,]
+
+good <- grepl("^\\d",dat[,"Date.of.Restoration"])
+dat <- dat[good,]
+
+nocommas <- gsub(",", "", dat$Number.of.Customers.Affected)
+good <- grepl("^\\d+$", nocommas)
+dat <- dat[good, ] 
+dat$Number.of.Customers.Affected <- as.numeric(nocommas[good])
+
+```
+
+```{r process3, echo=TRUE}
+
+Event_Start <- strptime(paste(dat[,"Date.Event.Began"],
+                              dat[,"Time.Event.Began"], sep=" "), format = "%m/%d/%Y %I:%M %p")
+
+Event_End <- strptime(paste(dat[,"Date.of.Restoration"],
+                            dat[,"Time.of.Restoration"],sep=" "), format = "%m/%d/%Y %I:%M %p")
+
+Event_Duration <- as.numeric(difftime(Event_End ,Event_Start, units='hours'))
+
+```
+
+
+
+```{r process4, echo=FALSE}
+
+Event_Time <- strptime(dat[,"Time.Event.Began"],     format = "%I:%M %p")
+negatives <- Event_Duration < 0
+
+dat$Start_Time <- Event_Start
+dat$End_Time <- Event_End
+dat$Duration <- Event_Duration
+dat$Customer_Hours <- dat$Number.of.Customers.Affected * Event_Duration
+dat$Event_Time <- Event_Time
+
+dat <- dat[!negatives,]
+dat <- dat[dat$Duration < 20000,]
+
+dat <- dat[dat$Number.of.Customers.Affected > 0,]
+
+dat <- na.omit(dat)
+
+# dim(dat)[1]
+
+```
+
+<br><br>
+
+###  SAIDI: Average Customer Time without Power
+##### SAIDI is an acronym for "System Average Interruption Duration Index" and is the average total time without power for a customer of an electric utility. It usually is calculated for a one-year period. To calculate SAIDI, let $U_i$ be the outage time for a disturbance event, $N_i$ is the number of customers impacted by the event, $N_y$ is the total number of events for the year, and $N_T$ is the total number of customers.
+
+##### $$SAIDI = \frac {\sum_{i=1}^{N_y} {U_i \cdot N_i}}{N_T}$$ 
+
+```{r plot1a, echo=FALSE, include=FALSE, results='hide'}
+
+get_saidi_hist <- function(inputVar, note1){
+    par(mar=c(5.1,6,4.1,2.1))
+    x <-     seq(0, 1200, by=200)
+    xlabs <- seq(0, 1200, by=200)
+    y <- seq(0, 250, by=50)
+    ylabs <- seq(0, 250, by=50)
+    hist(inputVar, #breaks=c(0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+     xlim=c(0, 1200), ylim=c(0,250), xlab="", ylab="",
+     main=note1,
+     right=FALSE, freq=TRUE, cex.main=2.2, cex.sub=1.5, col="#9999FF", xaxt="n", yaxt="n")
+     axis(1, at=x, labels=xlabs, col.axis="black", las=1, cex.axis=1.6)
+     axis(2, at=y, labels=ylabs, col.axis="black", las=2, cex.axis=1.6)
+     mtext("Hours", side=1, line=3, cex=1.8)
+    # mtext("Frequency of Occurance", side=2, line=4, cex=1.1)
+    # mtext(note1, side=3, line=-0, cex=1.1)
+     abline(h=seq(0,1000,by=50), col = "#9999FF")
+    #hist(c(1,2,3))
+}
+
+x <-     c(1.001, 2, 3, 4, 5, 6, 7, 8)
+
+y <- seq(0, 250, by=50)
+ylabs <- seq(0, 250, by=50)
+
+
+```
+
+###  Exploring the Raw Data
+
+####  All Utilities:
+
+```{r plotdistv, echo=FALSE, fig.width = 9, fig.height= 6}
+
+ggplot(rel2015, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
+    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
+    guides(color=guide_legend(title="High Feeder (KV)")) +
+    #labs(color='NEW LEGEND TITLE') +
+    scale_colour_gradient(low = "green", high = "Blue") +
+    #scale_fill_manual("legend_title") + # values=c("orange","red")
+    #scale_fill_continous(name = "New Legend Title") +
+    xlab("Number of Customers") +
+    scale_x_continuous(breaks = c(2,3,4,5,6), minor_breaks = seq(0 , 10, 0.5), labels = c("100" , "1000" , "10,000", "100,000", "1,000,000")) +
+    scale_y_continuous(breaks = c(0, 1, 2, 3), minor_breaks = seq(0 , 100, 0.5), labels = c("1" , "10" , "100", "1000")) +
+    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 3)) +
+    ggtitle("SAIDI for Year 2015") +
+    
+     ylab("SAIDI (Minutes per Year)") +
+     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+<br><br>
+
+####  Utilities with at least 50,000 Customers:
+
+```{r plot203, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
+
+big <- rel2015[rel2015$Number.of.Customers>50000,]
+
+ggplot(big, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
+    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
+    guides(color=guide_legend(title="High Feeder (KV)")) +
+    #labs(color='NEW LEGEND TITLE') +
+    scale_colour_gradient(low = "green", high = "Blue") +
+    #scale_fill_manual("legend_title") + # values=c("orange","red")
+    #scale_fill_continous(name = "New Legend Title") +
+    xlab("Number of Customers") +
+    scale_x_continuous(breaks = c(2,3,4,5,6), minor_breaks = seq(0 , 10, 0.5), labels = c("100" , "1000" , "10,000", "100,000", "1,000,000")) +
+    scale_y_continuous(breaks = c(0, 1, 2, 3), minor_breaks = seq(0 , 100, 0.5), labels = c("1" , "10" , "100", "1000")) +
+    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 3)) +
+    ggtitle("SAIDI for Year 2015") +
+    
+     ylab("SAIDI (Minutes per Year)") +
+     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+
+```
+
+<br><br>
+
+###  Exploring the Disturbance Time Data
+
+```{r plot2, echo=FALSE}
+
+par(mar=c(5.1,6,4.1,2.1))
+x <-     c(1.001, 2, 3, 4, 5, 6, 7, 8)
+xlabs <- c(0, 0.1, 1, 10, 100, 1000, 10000, 100000)
+y <- seq(0, 500, by=50)
+ylabs <- seq(0, 500, by=50)
+hist(log10(dat$Duration[1:1109]+0.001)+3.001, breaks=c(0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+     xlim=c(1.2,6), ylim=c(0,200), xlab="", ylab="",
+     main="Duration of Electric Power Outages",
+     right=FALSE, xaxt="n", yaxt="n", freq=TRUE, cex.main=1.5, cex.sub=1.5, col="#9999FF")
+axis(1, at=x,labels=xlabs, col.axis="black", cex.lab=1.5)
+axis(2, at=y, labels=ylabs, col.axis="black", las=2, cex.axis=1.2)
+mtext("Total Duration of Interruptions (Minutes per Year)", side=1, line=2.5, cex=1.5)
+mtext("Frequency of Occurance", side=2, line=4, cex=1.5)
+mtext("Disturbances in the United States for years 2011 to 2016", side=3, line=-0, cex=1.1)
+abline(h=seq(0,1000,by=50), col = "#9999FF")
+
+```
+
+##### The distribution of outage times extends over durations from near zero to over 100-hours. The distribution has a log-normal shape. The peak of the distribution indicates a typical outage of about 50-hours or about two days. The average or mean outage is 40.5 hours.
+
+```{r process5a, echo=TRUE}
+
+paste(formatC(sum(dat$Duration)/509), digits=1, "-hours", sep="")
+
+```
+
+##### The vast majority of the outages last no more than about two weeks (168-hours).
+
+<br><br>
+
+```{r plot3, echo=FALSE}
+
+library(lattice)
+par(mar=c(5.1,6,4.1,2.1))
+x <-     seq(0, 24, by=2)
+xlabs <- seq(0, 24, by=2)
+y <- seq(0, 500, by=20)
+ylabs <- seq(0, 500, by=20)
+
+
+hist(unclass(dat$Event_Time - strptime("12:00 AM", format = "%I:%M %p"))/3600, #xlab="Time difference",
+     breaks=c(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24),
+     xlim=c(0,24), ylim=c(0,100), xlab="", ylab="",
+     main="Time of Day",
+     right=FALSE, xaxt="n", yaxt="n", freq=TRUE, cex.main=1.5, cex.sub=1.5, col="#9999FF")
+axis(1, at=x,labels=xlabs, col.axis="black", cex.lab=1.5)
+axis(2, at=y, labels=ylabs, col.axis="black", las=2, cex.axis=1.2)
+mtext("Start Time of Interruption (24-Hour Clock)", side=1, line=2.5, cex=1.3)
+mtext("Frequency of Occurance", side=2, line=4, cex=1.5)
+mtext("Disturbances in the United States for years 2011 to 2016", side=3, line=-0, cex=1.1)
+abline(h=seq(0,1000,by=20), col = "#9999FF")
+
+
+```
+
+
+##### The plot above shows that the probability of a disruption roughly doubles between 4:00 PM (16-hours) and 8:00 PM (20-hours). The problems are the least in the late morning after 10:00 AM. This data indicates that most problems are random systematic ones or weather related.  
+
+<br><br>
+
+### Sample Calculation of SAIDI
+
+##### Let's assume that there were three disturbances during the year at a utility with durations of 10 hours, 20 hours, and 60 hours that in turn affected 30,000, 20,000, and 5,000 customers out of a total of 1 million customers.  
+
+##### $$SAIDI = \frac {10 \cdot 30000 + 20 \cdot 20000 + 60 \cdot 8000}{1,000,000}$$ 
+
+##### $U_1 = 10$ hours; $U_2 = 20$ hours; $U_3 = 60$ hours
+##### $N_1 = 30,000$ customers; $N_2 = 20,000$ customers; $N_i = 8,000$ customers
+##### $N_y = 3$ events; $N_T = 1,000,000$ total customers
+
+
+```{r process5b, echo=TRUE}
+
+SAIDI <- ((10 * 30000) + (20 * 20000) + (60 * 8000))/ 1000000
+paste ("SAIDI = ", SAIDI, "-hours",sep="")
+
+```
+
+### A different example using minutes instead of hours:
+
+##### $U_1 = 98$ minutes, $U_2 = 21$ minutes, $U_3 = 95$ minutes
+##### $N_1 = 2750$ impacted customers, $N_2 = 1710$ impacted customers, $N_i = 1516$ impacted customers
+##### $N_y = 3$ events
+#####  $N_T = 84500$ total customers
+
+
+```{r process5e, echo=TRUE}
+
+SAIDI <- ((98 * 2750) + (21 * 1710) + (95 * 1516))/ 84500
+paste ("SAIDI = ", formatC(SAIDI, digits=3), "-minutes",sep="")
+
+```
+
+<br><br>
+
+### SAIFI: Frequency of Interruptions
+
+##### SAIFI is an acronym for System Average Interruption Frequency Index (SAIFI) and the average number of times that customers experience an outage or interruption, usually over a one-year interval. The SAIFI index could depend on how it is measured unless you could keep track of how many times every customer loses power. Let $\lambda_i$ be the average frequency of interruptions in areas that we call "neighborhoods" which must be small enough so that most people within one usually lose power together when disruptions occur. Let $N_i$ is the number of customers in each neighborhood and $N$ be the number of neighborhoods in the service area.
+
+##### The number of times each neighborhood loses power (failures) must be tabulated during a one-year period and this is the failure rate $\lambda_i$ for particular neighborhoods. The number of failures and the number of customers for each neighborhood are multiplied together and summed over all neighborhoods. Finally, the sum is divided by the total number of customers $N_T$. 
+
+#### $$SAIFI = \frac {\sum_{i=1}^{N} {\lambda_i \cdot N_i}}{N_T}$$ 
+
+### Sample Calculation of SAIFI
+
+##### Let's assume that there were three neighborhoods which experienced 5, 4, and 2 interruptions (failures) during the year in regions of 1000, 2000. and 7000 customers. This corresponds to failure rates of 5, 4, and 2 for the year.   
+
+#### $$SAIFI = \frac {5 \cdot 1000 + 4 \cdot 2000 + 2 \cdot 7000}{1,000,000}$$ 
+
+##### $\lambda_1 = 5$ failures; $\lambda_2 = 4$ failures; $\lambda_3 = 2$ failures
+##### $N_1 = 1000$ impacted customers; $N_2 = 2000$ impacted customers; $N_i = 7000$ impacted customers
+##### $N_y = 3$ regions; N_T = 10,000$ total customers
+
+<br><br>
+
+
+```{r saifi2, echo=TRUE}
+
+SAIFI <- ((5 * 1000) + (4 * 2000) + (2 * 7000))/ 10000
+paste ("SAIFI = ", SAIFI, " Events per year",sep="")
+
+```
+
+
+### Further Work
+
+##### Can we predict the SAIDI figure from the other data? Is it within the expected range for the area and type of uility? Is the data for year 2016 within the espected range? These are questions that I plan to explore using machine learning.   
+
+<br><br>
+
+### Notes:
+
+##### [1] Jordan Wirfs-Brock of Inside Energy investigated the disturbance reports in August, 2014 and she maintains a website with data over a 15-year period. 
+
+##### http://insideenergy.org/2014/08/18/data-explore-15-years-of-power-outages/
+
+##### [2] Code for this reproducible report is available at https://github.com/marcelMerchat/. 
+
+##### [3] Since these files are only available for manual downloading, the process began by manually downloading them because DOE does not have an API or other method whereby this can be accomplished automatically. Although a single program should ideally accomplish everything and nothing should be manual for reproducible analysis. After downloading, the files were placed in the project folder. A second issue concerns the nature of the raw data files as Excel files. The files were opened with Excel and re-saved as a comma-separated-values (csv) text files without changes. The files are Excel reports and are not formatted as data files.
+
+##### [4] However, we can read Excel files directly by R programs using packages such as RExcel. I did not do this for this preliminary report; instead, I opened the files manually with Excel and re-saved them as exported comma-delimited text files. Although involved to setup, Excel files should be automatically read but this is perhaps unreasonable for a preliminary study such as this. From the viewpoint of an R program, Excel files are equivalent to compressed binary files and are handled in a similar manner except rather specialized package tools are required to read and write to them directly.
+
+##### [5] The raw Excel files and the corresponding csv files are included in my Github repository for this project.
+
+##### [6] Processing and Transforming the Raw Data
+
+##### There are 1113 time records of power disturbances for the six years from 2011 to 2016. Of these, 509 records report the numbers of affected customers. The organized DOE reports made it possible to combine the data over multiple years in the same tables. It might be useful to have similar tables as dataset files that could be verified for rigorous studies beyond the manual downloading and conversion to comma-separated format that were performed to form them. 
+
+<br><br>
+
+#### THE END

@@ -1,0 +1,230 @@
+﻿"OE-417 Electric Emergency and Disturbance (OE-417) Events, 20141",,,,,,,,
+Date Event Began,Time Event Began,Date of Restoration,Time of Restoration,Area Affected,NERC Region,Event Type,Demand Loss (MW),Number of Customers Affected
+January  ,,,,,,,,
+1/6/2014,7:50 PM,1/6/2014,8:44 PM,District of Columbia,RFC,Voltage Reduction due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,7:50 PM,1/6/2014,8:44 PM,Unknown,RFC,Voltage Reduction due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,7:52 PM,1/6/2014,8:45 PM,Delaware,RFC,Voltage Reduction due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,8:45 PM,1/7/2014,9:00 PM,Unknown,RFC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,7:50 PM,1/6/2014,8:49 PM,Pennsylvania,RFC,Voltage Reduction due to Severe Weather - Cold,200,"62,000"
+1/6/2014,7:50 PM,1/6/2014,8:44 PM,Pennsylvania,RFC,Voltage Reduction due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,2:37 PM,1/6/2014,2:38 PM,Utah,RFC,Vandalism,N/A,N/A
+1/6/2014,10:00 PM,1/6/2014,10:01 PM,Kentucky,RFC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/6/2014,7:01 AM,1/7/2014,9:00 AM,Texas,TRE,Public Appeal due to Severe Weather - Cold,N/A,N/A
+1/7/2014,9:00 PM,1/8/2014,9:00 AM,Unknown,RFC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/7/2014,6:18 AM,1/7/2014,6:19 AM,Pennsylvania,RFC,Severe Weather - Cold,Unknown,Unknown
+1/7/2014,7:58 AM,1/7/2014,11:00 AM,North Carolina,SERC,Voltage Reduction; Public Appeal due to Severe Weather - Cold,"14,435",Unknown
+1/7/2014,4:15 PM,1/8/2014,1:20 PM,North Carolina,SERC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/7/2014,6:00 AM,1/7/2014,8:30 AM,Northeast Tennessee,SERC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/7/2014,6:00 AM,1/7/2014,8:30 AM,Tennessee,SERC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/7/2014,6:00 PM,1/7/2014,11:00 PM,South Carolina,SERC,Voltage Reduction; Public Appeal; Load Shed 100+MW due to Severe Weather - Cold,"4,853","677,858"
+1/7/2014,10:59 AM,1/9/2014,9:00 AM,Illinois,RFC,Fuel Supply Emergency - Natural Gas,N/A,N/A
+1/7/2014,9:30 AM,1/8/2014,9:30 AM,"Piedmont North Carolina, Piedmont South Carolina",SERC,Fuel Supply Emergency due to Severe Weather - Cold,Unknown,Unknown
+1/8/2014,5:00 AM,1/8/2014,6:30 AM,Unknown,RFC,Voltage Reduction due to Severe Weather - Cold,576,Unknown
+1/8/2014,6:00 AM,1/8/2014,9:00 AM,South Carolina,SERC,Voltage Reduction; Public Appeal; Load Shed 100+MW due to Severe Weather - Cold,"4,545","677,858"
+1/13/2014,4:44 PM,1/13/2014,4:45 PM,Arizona,WECC,Physical Attack - Vandalism,N/A,N/A
+1/15/2014,2:32 PM,1/15/2014,2:45 PM,Utah,WECC,Physical Attack - Vandalism,Unknown,Unknown
+1/16/2014,12:30 PM,1/16/2014,1:57 PM,Arizona,WECC,Physical Attack - Vandalism,N/A,N/A
+1/17/2014,12:20 PM,1/17/2014,12:20 PM,Ohio,RFC,Suspected Physical Attack,Unknown,Unknown
+1/17/2014,10:30 AM,1/28/2014,9:00 AM,Illinois,RFC,Fuel Supply Emergency - Natural Gas,Unknown,Unknown
+1/18/2014,5:39 PM,Unknown,Unknown,Unknown,RFC,Electrical System Islanding,Unknown,Unknown
+1/18/2014,9:00 AM,1/18/2014,9:45 AM,Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,Unknown
+1/21/2014,5:00 PM,Unknown,Unknown,New Jersey,RFC,Physical Attack - Vandalism,Unknown,Unknown
+1/21/2014,12:14 PM,1/21/2014,12:39 PM,Missouri,SERC,Physical Attack - Vandalism,10,Unknown
+1/22/2014,1:55 PM,1/22/2014,2:55 PM,Wisconsin,MRO,Physical Attack - Vandalism,Unknown,Unknown
+1/22/2014,9:45 AM,1/22/2014,8:19 PM,Ohio,RFC,Physical Attack - Vandalism,Unknown,Unknown
+1/22/2014,9:15 PM,1/23/2014,3:08 AM,"Burlington County, New Jersey",RFC,Suspected Physical Attack,Unknown,Unknown
+1/22/2014,12:30 AM,1/22/2014,2:45 AM,Wisconsin,MRO,Physical Attack - Vandalism,Unknown,Unknown
+1/23/2014,4:00 AM,1/24/2014,12:00 PM,Tennessee,SERC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/23/2014,9:17 PM,1/24/2014,5:00 PM,"Wynoochee, Washington",WECC,Physical Attack - Vandalism,Unknown,Unknown
+1/23/2014,1:04 PM,1/24/2014,9:00 AM,Maryland,RFC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/23/2014,4:00 PM,1/24/2014,12:00 PM,Tennessee,SERC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/24/2014,12:00 AM,4/9/2014,11:53 AM,Wisconsin,RFC,Fuel Supply Emergency - Coal,Unknown,Unknown
+1/24/2014,3:30 PM,1/24/2014,5:00 PM,Wisconsin,MRO,Physical Attack - Vandalism,Unknown,Unknown
+1/25/2014,10:00 AM,1/25/2014,11:00 AM,"Madison, Wisconsin",MRO,Physical Attack - Vandalism,Unknown,Unknown
+1/26/2014,11:00 PM,Unknown,Unknown,New Jersey,RFC,Physical Attack,Unknown,Unknown
+1/26/2014,9:00 PM,1/27/2014,11:00 AM,Oregon,WECC,Physical Attack - Vandalism,N/A,N/A
+1/27/2014,2:20 PM,1/28/2014,9:00 PM,Maryland,RFC,Public Appeal due to Severe Weather - Cold,Unknown,Unknown
+1/29/2014,4:00 PM,1/29/2014,4:44 PM,Unknown,MRO,Physical Attack - Vandalism,Unknown,Unknown
+1/30/2014,3:00 PM,Unknown,Unknown,Arizona,WECC,Physical Attack - Vandalism,Unknown,Unknown
+February  ,,,,,,,,
+2/5/2014,12:00 AM,2/9/2014,6:00 PM,"Maryland, West Virginia",RFC,Severe Weather - Snow/Ice,Unknown,"101,580"
+2/5/2014,1:00 AM,2/9/2014,8:40 PM,Pennsylvania,RFC,Severe Weather - Snow/Ice,Unknown,"144,000"
+2/5/2014,5:00 AM,2/5/2014,5:01 AM,Pennsylvania,RFC,Severe Weather - Snow/Ice,Unknown,"715,000"
+2/5/2014,7:00 AM,2/23/2014,7:00 AM,New York,NPCC,Fuel Supply Emergency - Coal,300,Unknown
+2/5/2014,7:35 AM,2/7/2014,4:03 AM,"Lancaster Region, Pennsylvania",RFC,Severe Weather - Snow/Ice,Unknown,"62,159"
+2/5/2014,8:05 AM,2/5/2014,8:06 AM,"Baltimore, Maryland",RFC,Severe Weather - Ice,800,"181,000"
+2/6/2014,1:00 PM,2/6/2014,10:00 PM,California,WECC,Fuel Supply Emergency - Natural Gas,"4,000",Unknown
+2/6/2014,1:05 PM,2/6/2014,7:15 PM,Northern California,WECC,Fuel Supply Emergency - Natural Gas,160,Unknown
+2/6/2014,1:58 PM,2/6/2014,8:40 PM,Rio Grande Valley Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,Unknown
+2/6/2014,2:15 PM,2/6/2014,7:39 PM,California,WECC,Fuel Supply Emergency - Natural Gas,611,Unknown
+2/6/2014,3:35 PM,2/7/2014,11:30 AM,ERCOT Region Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,Unknown
+2/7/2014,7:00 AM,3/21/2014,8:00 AM,Niagara County New York,NPCC,Fuel Supply Emergency - Coal,675,Unknown
+2/7/2014,4:30 PM,2/8/2014,9:00 AM,ERCOT Region Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,Unknown
+2/7/2014,4:50 PM,2/7/2014,8:30 PM,Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,Unknown
+2/12/2014,7:48 AM,2/15/2014,4:30 AM,Northern/Northeastern Georgia,SERC,Severe Weather - Snow/Ice,"1,246","373,835"
+2/12/2014,11:03 AM,2/15/2014,8:40 AM,South Carolina,SERC,Severe Weather - Snow/Ice,700,"120,124"
+2/12/2014,12:10 PM,2/15/2014,3:20 PM,North Carolina,SERC,Severe Weather - Snow/Ice,Unknown,"200,000"
+2/12/2014,2:15 PM,2/12/2014,2:16 PM,Vermont,NPCC,Physical Attack - Vandalism,Unknown,Unknown
+2/14/2014,1:00 PM,2/14/2014,3:00 PM,"Portland, Oregon",WECC,Physical Attack - Vandalism,Unknown,Unknown
+2/18/2014,6:43 PM,2/18/2014,6:44 PM,"Bend, Oregon",WECC,Physical Attack - Vandalism,N/A,N/A
+2/20/2014,4:40 PM,2/21/2014,11:59 PM,"Missouri, Illinois",SERC,Severe Weather - Snow/Ice,Unknown,"66,000"
+2/21/2014,2:53 AM,2/21/2014,9:00 PM,Northern/Northeastern Georgia,SERC,Severe Weather - Thunderstorms/High Winds,221,"66,445"
+March,,,,,,,,
+3/2/2014,7:00 PM,3/4/2014,9:00 AM,ERCOT Region Texas,TRE,Public Appeal due to Severe Weather - Cold,N/A,N/A
+3/3/2014,5:25 PM,3/3/2014,5:25 PM,New York,NPCC,Suspected Physical Attack,Unknown,Unknown
+3/3/2014,6:40 AM,3/3/2014,3:28 PM,Tennessee,SERC,Severe Weather - Winter Storm,Unknown,"65,904"
+3/3/2014,1:48 AM,3/3/2014,1:49 AM,"Mid-Columbia River Generation, Washington",WECC,Fuel Supply Emergency - Hydro,630,Unknown
+3/4/2014,9:06 AM,3/17/2014,9:06 AM,"Weston, Wisconsin",MRO,Fuel Supply Emergency - Coal,Unknown,Unknown
+3/5/2014,5:06 PM,3/5/2014,5:07 PM,"Salt Lake City, Utah",WECC,Physical Attack,Unknown,Unknown
+3/7/2014,3:30 AM,3/7/2014,9:00 PM,"Triad, North Carolina",SERC,Severe Weather - Winter Storm,1500,"370,900"
+3/11/2014,12:00 AM,3/13/2014,12:00 AM,"Boone County, Iowa",MRO,Suspected Physical Attack,Unknown,Unknown
+3/12/2014,7:35 PM,3/13/2014,12:00 PM,North Carolina,SERC,Severe Weather - High Winds,250,"61,377"
+3/14/2014,12:34 PM,3/14/2014,4:45 PM,"Boone County, Iowa",MRO,Physical Attack - Vandalism,Unknown,Unknown
+3/17/2014,5:25 PM,3/18/2014,12:56 AM,"Glendale, Arizona",WECC,Physical Attack - Sabatoge,N/A,N/A
+3/20/2014,12:00 AM,3/20/2014,12:01 AM,New York,NPCC,Suspected Cyber Attack,Unknown,Unknown
+3/24/2014,11:07 AM,3/24/2014,11:08 AM,"Salt Lake City, Utah",WECC,Physical Attack - Vandalism,N/A,N/A
+3/26/2014,4:00 PM,4/10/2014,12:00 PM,Iowa,MRO,Physical Attack,N/A,N/A
+3/26/2014,1:37 PM,3/26/2014,2:33 PM,Montana,WECC,Electrical System Separation (Islanding),Unknown,Unknown
+3/31/2014,3:41 PM,3/31/2014,8:08 PM,Puerto Rico,N/A,System Wide Voltage Reduction,Unknown,Unknown
+April,,,,,,,,
+4/3/2014,12:00 AM,Unknown,Unknown,Texas,TRE,Fuel Supply Emergency - Coal,Unknown,Unknown
+4/3/2014,2:45 PM,4/9/2014,11:53 AM,Wisconsin,MRO,Fuel Supply Emergency - Coal,Unknown,Unknown
+4/4/2014,3:30 AM,4/4/2014,8:15 AM,Central Arkansas,SERC,Severe Weather - Wind,Unknown,"57,200"
+4/8/2014,1:00 PM,4/8/2014,1:01 PM,"Davis, California",WECC,Physical Attack - Vandalism,Unknown,Unknown
+4/8/2014,11:09 AM,4/8/2014,11:20 AM,Puerto Rico,N/A,Voltage Reduction,Unknown,Unknown
+4/12/2014,6:15 PM,4/14/2014,9:00 AM,Western and Central Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"50,000"
+4/12/2014,8:00 PM,4/15/2014,7:30 PM,Michigan,RFC,Severe Weather,Unknown,"164,000"
+4/23/2014,7:45 PM,4/23/2014,8:37 PM,"Baton Rouge, Louisiana",SERC,Load shedding of 100 Megawatts,163,"28,000"
+4/24/2014,3:02 PM,4/24/2014,5:13 PM,"Alberta, Canada",WECC,Electrical System Separation (Islanding),Unknown,Unknown
+4/25/2014,7:00 AM,4/25/2014,7:30 AM,Delaware,RFC,Physical Attack - Vandalism,Unknown,Unknown
+4/27/2014,9:15 AM,Unknown,Unknown,"Alberta, Canada",WECC,Electrical System Separation (Islanding),9750,"4,000,000"
+4/27/2014,12:07 PM,4/27/2014,12:09 PM,"Albany, Oregon",WECC,Physical Attack - Vandalism,Unknown,Unknown
+4/29/2014,11:30 PM,4/29/2014,12:30 PM,"Mississippi, Alabama",SERC,Severe Weather - Thunderstorms,355,"106,648"
+4/29/2014,9:37 AM,5/1/2014,9:00 AM,"Northeastern Mississippi, Northern Alabama",SERC,Severe Weather - Thunderstorms,Unknown,"57,000"
+4/30/2014,3:50 AM,4/30/2014,2:00 PM,"Alabama, Florida, Georgia",SERC,Severe Weather - Thunderstorms,296,"89,000"
+May,,,,,,,,
+5/8/2014,8:39 AM,5/8/2014,8:40 AM,"Imperial Valley, California",WECC,Physical Attack,Unknown,Unknown
+5/8/2014,1:00 AM,5/8/2014,1:01 AM,Mississippi,SERC,Physical Attack,Unknown,Unknown
+5/9/2014,6:00 PM,5/11/2014,1:00 PM,Indiana,RFC,Severe Weather - Heavy Winds,Unknown,"56,000"
+5/11/2014,6:38 PM,5/11/2014,6:39 PM,"MISO North, Minnesota",MRO,Physical Attack - Vandalism,Unknown,Unknown
+5/12/2014,1:14 PM,5/12/2014,1:15 PM,"Layton, Utah",WECC,Physical Attack - Vandalism,Unknown,Unknown
+5/14/2014,3:34 PM,Unknown,Unknown,"San Diego & Orange Counties, California",WECC,Public Appeal to Reduce Electricity Usage - Wild Fires,N/A,426
+5/15/2014,10:43 AM,Unknown,Unknown,"San Diego & Orange Counties, California",WECC,Public Appeal to Reduce Electricity Usage - Wild Fires,"3,300","1,400,000"
+5/15/2014,12:10 PM,5/15/2014,12:13 PM,"Whiting, Indiana",RFC,Suspected Physical Attack,N/A,N/A
+5/16/2014,10:43 AM,5/16/2014,9:00 PM,"San Diego & Orange Counties, California",WECC,Public Appeal to Reduce Electricity Usage - Wild Fires,"3,900","1,400,000"
+5/20/2014,7:01 AM,5/20/2014,7:02 AM,"Duchesne County, Utah",WECC,Physical Attack - Vandalism,N/A,N/A
+5/23/2014,3:00 PM,5/25/2014,7:00 PM,North Carolina,SERC,Physical Attack - Vandalism,Unknown,Unknown
+5/26/2014,12:31 PM,5/26/2014,1:18 PM,"British Columbia & Alberta, Canada",WECC,Electrical System Separation (Islanding),Unknown,Unknown
+5/27/2014,11:00 AM,5/27/2014,4:53 PM,"Phoenix, Arizona",WECC,Physical Attack - Vandalism,N/A,N/A
+June,,,,,,,,
+6/3/2014,1:38 AM,6/3/2014,1:43 AM,Texas,ERCOT,Physical Attack - Vandalism,Unknown,Unknown
+6/3/2014,3:32 PM,6/3/2014,3:59 PM,"Alberta, Canada",WECC,Electrical System Islanding,338,N/A
+6/5/2014,3:00 AM,6/7/2014,11:45 PM,"Shelby County, Tennessee",SERC,Severe Weather - Thunderstorms,494,"38,500"
+6/6/2014,1:00 PM,Unknown,Unknown,Texas,ERCOT,Fuel Supply Emergency - Coal,Unknown,Unknown
+6/5/2014,1:06 PM,6/5/2014,1:07 PM,West Tennessee,SERC,Severe Weather - Thunderstorms,Unknown,"56,475"
+6/7/2014,11:00 PM,6/8/2014,5:30 AM,"North and Central , Alabama",SERC,Severe Weather - Thunderstorms,217,"65,000"
+6/9/2014,11:07 AM,6/9/2014,11:30 AM,"Alberta, Canada",WECC,Electrical System Islanding,Unknown,Unknown
+6/11/2014,9:30 AM,6/11/2014,9:31 AM,"Nogales, Arizona",WECC,Suspected Physical Attack,N/A,N/A
+6/10/2014,9:50 PM,6/11/2014,2:30 PM,West Virginia,RFC,Severe Weather - Thunderstorms,Unknown,"66,383"
+6/11/2014,4:00 PM,6/11/2014,4:30 PM,Southern Mississippi,SERC,Physical Attack - Vandalism,N/A,N/A
+6/12/2014,9:10 AM,6/12/2014,9:11 AM,"Somervell County, Texas",ERCOT,Suspected Physical Attack,Unknown,Unknown
+6/15/2014,12:00 AM,6/15/2014,1:00 AM,Central Minnesota,MRO,Severe Weather - Thunderstorms,Unknown,"55,951"
+6/18/2014,9:52 AM,6/18/2014,7:00 PM,Washington,WECC,Physical Attack - Vandalism,Unknown,Unknown
+6/18/2014,5:00 PM,6/20/2014,3:00 PM,Southeast Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"138,802"
+6/19/2014,8:47 AM,6/19/2014,8:48 AM,"Nashville, Tennessee",SERC,Physical Attack - Vandalism,Unknown,Unknown
+6/24/2014,2:54 PM,6/24/2014,2:55 PM,"Nashville, Tennessee",SERC,Physical Attack - Vandalism,Unknown,Unknown
+6/27/2014,1:21 PM,Unknown,Unknown,Wisconsin,MRO,Fuel Supply Emergency - Coal,Unknown,Unknown
+6/30/2014,5:55 PM,7/1/2014,2:53 AM,Southeast  Wisconsin,MRO,Severe Weather - Thunderstorms,424,"120,000"
+6/30/2014,8:00 PM,7/2/2014,6:30 PM,Illinois,RFC,Severe Weather - Thunderstorms,Unknown,"420,000"
+6/30/2014,11:20 PM,7/1/2014,5:00 PM,North Central Indiana,RFC,Severe Weather - Thunderstorms,Unknown,"127,000"
+July,,,,,,,,
+7/1/2014,5:00 AM,7/2/2014,2:00 AM,"Indiana, Michigan",RFC,Severe Weather - Thunderstorms,Unknown,"57,237"
+7/2/2014,8:39 AM,7/28/2014,3:13 PM,Wisconsin,MRO,Fuel Supply Emergency - Coal,Unknown,Unknown
+7/1/2014,3:30 AM,Unknown,Unknown,Southwest Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"51,000"
+7/1/2014,4:00 AM,7/3/2014,11:30 PM,Southeast Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"140,000"
+7/3/2014,6:00 PM,7/6/2014,12:00 PM,Pennsylvania,RFC,Severe Weather - Thunderstorms,Unknown,"298,165"
+7/3/2014,10:55 PM,7/4/2014,1:50 AM,"Vermont, New Hampshire, Maine, Rhode Island, Massachusetts, Connecticut",NPCC,Severe Weather - Thunderstorms,Unknown,"64,000"
+7/8/2014,8:30 PM,7/11/2014,11:00 PM,Pennsylvania,RFC,Severe Weather - Thunderstorms,Unknown,"260,000"
+7/8/2014,9:31 PM,Unknown,Unknown,Maryland,RFC,Severe Weather - Thunderstorms,Unknown,"56,600"
+7/8/2014,6:00 PM,7/11/2014,5:53 PM,Eastern Pennsylvania,RFC,Severe Weather - Thunderstorms,Unknown,"69,000"
+7/8/2014,5:30 PM,7/12/2014,11:20 PM,"Maryland, West Virginia",RFC,Severe Weather - Thunderstorms,Unknown,"96,000"
+7/8/2014,5:30 PM,7/12/2014,11:30 PM,West Virginia,RFC,Severe Weather - Thunderstorms,Unknown,"71,000"
+7/8/2014,7:21 PM,7/11/2014,7:00 AM,Upstate New York,NPCC,Severe Weather - Thunderstorms,Unknown,"65,000"
+7/8/2014,5:30 PM,7/10/2014,3:00 PM,Central and Northeastern Pennsylvania,RFC,Severe Weather - Thunderstorms,Unknown,"66,000"
+7/14/2014,4:00 PM,7/14/2014,4:15 PM,Washington,WECC,Suspected Physical Attack,Unknown,Unknown
+7/23/2014,7:14 PM,7/24/2014,12:23 AM,"Arkansas, Louisiana",SERC,Severe Weather - Thunderstorms,Unknown,"57,299"
+7/24/2014,4:29 PM,7/24/2014,11:32 PM,California,WECC,Load shedding of 100 Megawatts,126,"26,856"
+7/27/2014,5:00 PM,7/28/2014,11:00 PM,Southeast Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"156,611"
+7/27/2014,11:00 PM,7/28/2014,4:00 AM,Central California,WECC,Uncontrolled Loss of 300 Megawatts,480,1
+August,,,,,,,,
+8/1/2014,3:03 PM,8/1/2014,3:04 PM,Utah,WECC,Physical Attack,Unknown,Unknown
+8/13/2014,6:08 AM,8/13/2014,6:34 AM,"Alberta, Canada",WECC,Electrical System Separation (Islanding),370,Unknown
+8/20/2014,1:21 AM,8/20/2014,1:41 AM,"Alberta, Canada",WECC,Electrical System Separation (Islanding),Unknown,Unknown
+8/23/2014,4:39 PM,8/24/2014,1:46 AM,"City of Highland, Illinois",RFC,Operational Failure of Electrical System,31,"6,549"
+8/24/2014,3:20 AM,8/25/2014,7:05 AM,"North of San Francisco, California",WECC,Earthquake,95,"70,000"
+8/26/2014,3:30 PM,Unknown,Unknown,Southeast Michigan,RFC,Severe Weather - Thunderstorms,Unknown,Unknown
+8/27/2014,12:49 PM,8/27/2014,1:30 PM,Delaware,RFC,Suspected Physical Attack,Unknown,Unknown
+8/30/2014,3:30 PM,9/1/2014,2:30 PM,"Luzerne County, Pennsylvania",RFC,Suspected Physical Attack,Unknown,Unknown
+September,,,,,,,,
+9/5/2014,8:00 PM,Unknown,Unknown,Michigan,RFC,Severe Weather - Thunderstorms,Unknown,"324,000"
+9/5/2014,4:30 PM,9/6/2014,2:00 PM,Illinois,RFC,Severe Weather - Thunderstorms,Unknown,"180,400"
+9/5/2014,7:14 PM,9/6/2014,1:00 PM,Lower Peninsula of Michigan,RFC,Severe Weather - Thunderstorms,50,"60,000"
+9/9/2014,8:18 AM,9/9/2014,11:59 PM,"Alberta, Canada",WECC,Electrical System Separation (Islanding),Unknown,Unknown
+9/11/2014,4:56 AM,9/11/2014,5:37 AM,"Alberta, Canada",WECC,Electrical System Separation (Islanding),Unknown,Unknown
+9/14/2014,9:50 PM,9/17/2014,3:08 PM,Oregon,WECC,Electrical System Separation (Islanding),1,123
+9/16/2014,11:56 AM,9/16/2014,11:57 AM,California,WECC,Physical Attack - Vandalism,Unknown,Unknown
+9/17/2014,1:30 PM,9/17/2014,2:00 PM,Michigan,RFC,Suspected Physical Attack - Suspcious Activity,Unknown,Unknown
+9/19/2014,2:20 PM,9/23/2014,1:10 PM,"Estacada, Oregon",WECC,Electrical System Separation (Islanding),1,123
+9/22/2014,11:00 AM,9/22/2014,11:01 AM,Northeast Minnesota,MRO,Fuel Supply Emergency - Coal,"1,000","140,000"
+9/23/2014,1:13 AM,9/23/2014,3:00 AM,New York,NPCC,Physical Attack - Suspcious Activity,N/A,N/A
+9/21/2014,1:30 PM,Unknown,Unknown,New York,NPCC,Physical Attack - Suspcious Activity,Unknown,Unknown
+9/24/2014,11:30 AM,9/24/2014,3:43 PM,Washington,WECC,Physical Attack - Vandalism,Unknown,Unknown
+October,,,,,,,,
+10/2/2014,3:00 PM,10/2/2014,3:01 PM,"Cave Junction, Oregon",WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/2/2014,10:15 PM,Unknown,Unknown,Arkansas,SERC,Severe Weather - Thunderstorms,Unknown,"67,300"
+10/2/2014,4:00 PM,10/7/2014,10:00 AM,Texas,TRE,Severe Weather - Thunderstorms,Unknown,"500,000"
+10/6/2014,10:52 AM,10/7/2014,12:52 AM,"Houston, Texas",TRE,Severe Weather - Thunderstorms,292,"129,237"
+10/7/2014,12:00 PM,10/7/2014,12:01 PM,Maryland,RFC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/8/2014,4:47 PM,10/8/2014,6:29 PM,Rio Grande Valley Texas,TRE,Public Appeal to Reduce Electricity Usage; Load Shed of 100 MW,Unknown,Unknown
+10/8/2014,4:49 PM,10/8/2014,6:23 PM,Rio Grande Valley Texas,TRE,Public Appeal to Reduce Electricity Usage; Load Shed of 100 MW,585,"120,000"
+10/9/2014,9:27 AM,Unknown,Unknown,Rio Grande Valley Texas,TRE,Public Appeal to Reduce Electricity Usage,Unknown,"2,800"
+10/13/2014,12:45 PM,10/13/2014,4:15 PM,Louisiana,SERC,Severe Weather - Thunderstorms,Unknown,"68,600"
+10/14/2014,7:33 AM,10/14/2014,7:34 AM,Oregon,WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/14/2014,6:20 PM,10/14/2014,6:28 PM,Puerto Rico,N/A,Voltage Reduction,Unknown,Unknown
+10/14/2014,5:44 AM,10/14/2014,5:50 PM,"Alabama, Florida, Georgia",SERC,Severe Weather - Thunderstorms,191,"57,475"
+10/15/2014,7:46 AM,10/15/2014,7:47 AM,Oregon,WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/16/2014,9:12 AM,10/17/2014,3:00 PM,"Garden City, Kansas",MRO,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/16/2014,1:25 PM,10/16/2014,5:26 PM,Manitoba,MRO,Suspected Physical Attack,129,Unknown
+10/20/2014,12:00 AM,Unknown,Unknown,"Howard County, Texas",MRO,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/21/2014,8:25 AM,10/21/2014,10:08 AM,"Carmel, Indiana",MRO,Suspected Cyber Attack,Unknown,Unknown
+10/22/2014,10:46 PM,10/22/2014,10:47 PM,"New Hampshire, Maine, Massachusetts, Rhode Island, Connecticut, Vermont",NPCC,Severe Weather,Unknown,"66,650"
+10/24/2014,6:16 PM,10/25/2014,1:51 PM,"Enfield, Connecticut ",NPCC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/24/2014,4:00 PM,10/24/2014,5:50 PM,"Howard County, Texas",MRO,Suspected Physical Attack - Vandalism,Unknown,Unknown
+10/25/2014,4:00 PM,10/25/2014,10:00 PM,"Greater Portland and Salem, Oregon",WECC,Severe Weather - Wind,216,"78,000"
+10/25/2014,6:00 PM,Unknown,Unknown,"King County, Thurston County and Kitsap County,  Washington",WECC,Severe Weather - Wind,154,"96,000"
+November,,,,,,,,
+11/1/2014,1:00 AM,11/1/2014,1:01 AM,"Portland, Oregon",WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/2/2014,1:46 PM,Unknown,Unknown,"Massachusetts, Maine, Vermont, New Hampshire, Rhode Island, Connecticut",NPCC,Severe Weather - Winter Storm,Unknown,"63,719"
+11/11/2014,6:00 PM,11/14/2014,3:00 PM,Washington,WECC,Severe Weather - Wind,132,"68,000"
+11/12/2014,2:59 AM,11/12/2014,3:00 AM,Unknown,SERC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/13/2014,7:07 AM,11/13/2014,7:08 AM,"Howard County,Texas",MRO,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/14/2014,9:50 AM,11/14/2014,1:18 PM,"Estacada, Oregon",WECC,Electrical System Islanding,1,123
+11/19/2014,2:44 PM,11/19/2014,2:45 PM,"Victorville, California",WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/21/2014,8:29 PM,11/23/2014,12:16 AM,"Twin Falls, Idaho",WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/21/2014,11:26 AM,11/23/2014,5:20 PM,"Sand Springs - Fort Rock, Oregon",WECC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+11/24/2014,12:00 AM,Unknown,Unknown,"Nebraska, Kansas, Texas, Arkansas, Louisiana, New Mexico",SPP,Fuel Supply Emergency - Coal,Unknown,Unknown
+11/24/2014,12:00 PM,11/27/2014,1:00 PM,Michigan,RFC,Severe Weather - Wind,Unknown,"186,154"
+11/26/2014,5:50 PM,11/28/2014,7:00 AM,"New Hampshire, Massachusetts, Maine, Rhode Island, Connecticut, Vermont",NPCC,Severe Weather - Winter Storm,Unknown,"79,530"
+December,,,,,,,,
+12/1/2014,10:44 AM,12/1/2014,10:45 AM,"Fayetteville, North Carolina",SERC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+12/3/2014,12:15 PM,12/3/2014,12:16 PM,Maine,NPCC,Suspected Physical Attack - Vandalism,Unknown,Unknown
+12/11/2014,6:40 AM,Unknown,Unknown,Northern California,WECC,Severe Weather- High Winds,Unknown,Unknown
+12/11/2014,7:21 AM,12/11/2014,9:53 PM,"San Francisco, California",WECC,Distribution Interruption - Unknown Cause,225,"75,000"
+12/11/2014,11:15 PM,Unknown,Unknown,Northern California,WECC,Severe Weather- High Winds,Unknown,Unknown
+12/11/2014,4:05 PM,12/11/2014,9:00 PM,"Portland, Oregon",WECC,Severe Weather- High Winds,250,"85,470"
+12/11/2014,5:00 PM,12/12/2014,10:00 AM,"Kitsap, Thurston, Whatcom counties Washington",WECC,Severe Weather- High Winds,116,"264,000"
+12/17/2014,11:00 AM,12/17/2014,12:15 PM,Washington,WECC,Suspected Physical Attack,Unknown,Unknown
+12/30/2014,3:50 PM,12/31/2014,11:00 AM,"New Hampshire, Massachusetts, Maine, Rhode Island, Connecticut, Vermont",NPCC,Suspected Cyber Attack,Unknown,Unknown
+12/30/2014,1:08 PM,1/1/2015,4:50 PM,Northern California,WECC,Severe Weather- High Winds,127,"84,500"
+"1 Source: Submissions of all Electric Emergency Incident and Disturbance Reports (OE-417), http://www.oe.netl.doe.gov/oe417.aspx",,,,,,,,
+2 This event was incorrectly listed as occuring in April 2014 in previous postings. It has been corrected in this release.,,,,,,,,
