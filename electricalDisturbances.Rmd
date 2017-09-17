@@ -15,50 +15,67 @@ custsty {
      font-size:0.9em;
 
 }
+
+caption {
+    /*padding-left: 200px;*/
+    padding-bottom: 15px;
+    margin: auto;
+    font-family: arial, verdana, sans-serif;
+    font-size: 44px;
+    color: #008899;
+    height: 50px;
+    font-size: 1.5em;
+    margin: auto;
+    text-align: center;
+}
+
     
 table {
     border-collapse: collapse;
-    width: 980px;
-    height: 400px;
+    /*width: 980px;*/
+    /*height: 400px;*/
     /*background-color: #9999FF;*/
     background-image: none;
     cell-spacing: 0px;
-    /*padding-left: 0px;*/
-    /*padding-right: 75px;*/
+    padding-left: 0px;
+    padding-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
-    border: 0px solid #BBBBFF;
-    background-color: #CCEEFF;
+    border: 2px solid #CCCCEE;
+    background-color: #CCDDEE;
     margin: auto;
 }
 
 th {
-    font-color:#FF0000;
-    padding-left: 0px;
-    /*padding-right: 0px;*/
-    padding-top: 0px;
+    color:#008899;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
     padding-bottom: 0px;
-    background-color: #CCEEFF;
+    background-color: #CCDDEE;
     cell-spacing: 0px;
-    border: 0px solid #FFFFFF;
+    border: 1px solid #505050;
     margin: auto;
-    width: 480px;
+    /*width: 480px;*/
     height: 20px;
+    font-size: 1.6em;
+    font-weight: normal;
 }
 
 td {
-    /*padding-left: 0px;*/
-    /*padding-right: 0px;*/
-    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
     padding-bottom: 0px;
     cell-spacing: 0px;
-    border: 0px solid #000000;
+    border: 1px solid #505050;
     margin: auto;
     font-family: arial, verdana, sans-serif;
     background-color: #CCEEFF;
     
-    /*width: 480px;*/
-    height: 20px;
+    /*width: 270px;*/
+    height: 40px;
+    font-size: 1.2em;
 }
 
 tr {
@@ -176,6 +193,23 @@ p {
     font-weight: normal;
 }
 
+center {
+    font-family: arial, verdana, sans-serif;
+    font-size:20px;
+    color: #112233;
+    font-weight: normal;
+}
+
+.centeredh3 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:36px;
+    LINE-HEIGHT:54px;
+    color: #449944;
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+
 .tablenote{
     padding-top: 15px;
     font-size:20px;
@@ -207,10 +241,6 @@ img {
     margin: auto;
 }
 
-caption{
-    padding-bottom: 8px;
-    font-size: 0.5em;
-}
 sub, sup {
  font-size: 75%;
  line-height: 0;
@@ -265,45 +295,36 @@ slides > slide  {
 
 </style>
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+</script>
+
 
 ### Analysis of Electric Power Reliability
 ### US Department of Energy Compliance Reports
 
 <br><br>
 
-### September 5, 2017
+### September 18, 2017
 ### Marcel Merchat
 
 <br><br>
 
 ### Overview of Power Disruption Data
 
-##### This report concerns SAIDA and SAIFI data for more than five hundred electric utility companies that reported to the United States Department of Energy (DOE) according to the IEEE-1366 standard in the three years from 2013-2015. We also discuss the event time data found in Electric Disturbance reports for the years 2011-2016 which are filed on Form OE-417 for larger power disruptions. Jordan Wirfs-Brock of Inside Energy investigated the disturbance reports in August, 2014 and she maintains a website with data over a 15-year period [1]. In this report, we investigate the reliability data which was uniformly reported beginning in 2013 and the detailed event data which became available starting in 2011. 
-
-<br><br>
-
-### Raw Data
-
-##### The raw data for this analysis are DOE annual reports that are Excel files. There are two groups of files. The first group are reliability files with SAIDA and SAIFI data; the second group consists of the detailed event time data reported with Form OE-417. The reliability files named Reliability_2013, Reliability_2014, and Reliability_2015 were obtained from the following website within zip files named f8612013.zip, f8612014.zip, and f8612015.zip at the following website.
-
-##### https://www.eia.gov/electricity/data/eia861/index.html
-
-##### The event time data is mined from files for Form OE-417 starting with the year 2009. Even though the reliability files are more general, the time data files begin with one named "2009_Annual_Summary.csv." These were summary files for government officials concerned with major outages called "Electric Disturbance Events" and have a special column for vandalism and cyber-attacks. These Excel files were obtained from the following website: 
-
-##### https://www.oe.netl.doe.gov/OE417_annual_summary.aspx.
-
-##### Date and time information were converted to a time-series data type. There is information concerning the processing and transforming of the raw data [6] and the reproducibility of this analysis at the end of this report. 
-
+##### This report concerns SAIDA and SAIFI data for more than five hundred electric utility companies that reported to the United States Department of Energy (DOE) according to the IEEE-1366 standard in the three years from 2013-2015. We also discuss the event time data found in Electric Disturbance reports for the years 2011-2016 which were filed on Form OE-417 for larger power disruptions which were discussed by Jordan Wirfs-Brock of Inside Energy in August of 2014. She maintains a website with data over a 15-year period [1]. In this report, we investigate DOE reliability data which was uniformly reported beginning in 2013 along with more comprehensive event time data which became available starting in 2011. 
 
 ```{r setup, results='hide', echo = FALSE, message=F, warning=F, cache=FALSE}
-
 
 library(lattice)
 
 library(ggplot2)
+library(caret)
+library(randomForest)
+library(AppliedPredictiveModeling)
+
 library(psych)
 library(xtable)
-
 
 library(grid)
 library(gridExtra)
@@ -313,10 +334,10 @@ oldw <- getOption("warn")
 options(warn = -1)
 
 discrete_volts <- function(x){
-    
+    #print(str(x))
     i <- 1
     for(v in seq_along(x)){
-        if(x[i] > 60 & volts[i] < 70) {
+        if(x[i] > 60 & x[i] < 70) {
             x[i] <- 69
         } else if(x[i] > 50 & x[i] <= 60) {
             x[i] <- 60
@@ -344,206 +365,771 @@ discrete_volts <- function(x){
         i <- i + 1
         
     }
+    
+    #69000 * runif(length(x))
     x
+    
 } 
 
+reliable <- function(x){
+    good1 <- grepl("\\d", x[,"SAIDI.With.MED"])
+    good2 <- grepl("\\d", x[,"SAIDI.Without.MED"])
+    good3 <- grepl("\\d", x[,"Number.of.Customers"])
+    good4 <- grepl("\\d", x[,"Highest.Dist..Voltage"])
+    good5 <- grepl("[NnYy]", x[,"Outages.Recorded.Automatically"])
+    good6 <- grepl("\\d", x[,"SAIFI.With.MED"])
+    good7 <- grepl("\\d", x[,"SAIFI.Without.MED"])
+    good <- good1 * good2 * good3 * good4 * good5 * good6 * good7
+    rel <- x[good==TRUE,][,c(1:13)]
+    
+    rel$Number.of.Customers <- nocommas(rel$Number.of.Customers)
+    rel$SAIDI.With.MED <- nocommas(rel$SAIDI.With.MED)
+    rel$SAIDI.Without.MED <- nocommas(rel$SAIDI.Without.MED)
+    rel$SAIDI.Without.MED <- nocommas(rel$SAIDI.Without.MED)
+    rel$Highest.Dist..Voltage <- as.numeric(rel$Highest.Dist..Voltage)
+    rel <- rel[order(rel$Highest.Dist..Voltage),]
+    volts <- as.numeric(rel$Highest.Dist..Voltage)
+    rel[,"Highest_Feeder"] <- discrete_volts(volts)  # as.numeric(nocommas)  #
+    rel$Automatic_Report <- as.factor(rel$Outages.Recorded.Automatically)
+    size <- rel$Number.of.Customers > 50000
+    rel[size==TRUE,"Size_Class"] <- "large"
+    rel[size==FALSE,"Size_Class"] <- "small"
+    rel[,"Size_Class"] <- as.factor(rel[,"Size_Class"])
+    rel
+}
 
+
+nocommas <- function(x){
+    nocommas <- gsub(",", "", x)
+    as.numeric(nocommas)
+}
+
+get_statecode <- function(rel){
+    
+    rel$State_Code <- "unknown_state"
+    
+    temp <- grepl("AL", rel[,"State"])
+    rel[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("Alaska", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("AR", rel[,"State"])
+    rel[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("AZ", rel[,"State"])
+    rel[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("CA", rel[,"State"])
+    rel[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("CO", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("CT", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("DE", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("FL", rel[,"State"])
+    rel[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("GA", rel[,"State"])
+    rel[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("HI", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("IA", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("ID", rel[,"State"])
+    rel[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("IN", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("IL", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("KS", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("KY", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("LA", rel[,"State"])
+    rel[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("MA", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("MD", rel[,"State"])
+    rel[temp,"State_Code"] <-  "East_Coast"
+    
+    temp <- grepl("ME", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("MI", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("MN", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("MS", rel[,"State"])
+    rel[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("MO", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("MT", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("NH", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("NM", rel[,"State"])
+    rel[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("ND", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("NE", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("NY", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("NV", rel[,"State"])
+    rel[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("NC", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("NJ", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("OH", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("OK", rel[,"State"])
+    rel[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("OR", rel[,"State"])
+    rel[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("PA", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("PR", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("RI", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England" # "ME_CT_MA_NH_VT_RI"
+    
+    temp <- grepl("SC", rel[,"State"])
+    rel[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("SD", rel[,"State"])
+    rel[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("TN", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("TX", rel[,"State"])
+    rel[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("UT", rel[,"State"])
+    rel[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("VA", rel[,"State"])
+    rel[temp,"State_Code"] <-  "East_Coast"
+    
+    temp <- grepl("VT", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("WA", rel[,"State"])
+    rel[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("DC", rel[,"State"])
+    rel[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("WV", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("WY", rel[,"State"])
+    rel[temp,"State_Code"] <-  "High_Plains"
+    
+    temp <- grepl("IA", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Alberta", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("AEP Region", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("WI", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Southwest Virginia", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Kentucky, Virginia, West Virginia", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Indiana; Michigan; Ohio; West Virginia", rel[,"State"])
+    rel[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Maine: Connecticut: Massachusetts: Vermont", rel[,"State"])
+    rel[temp,"State_Code"] <- "New_England"
+  
+    temp <- grepl("Southern Company Territory", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Unknown", rel[,"State"])
+    rel[temp,"State_Code"] <- "Other"
+    rel[,"Region"] <- as.factor(rel[,"State_Code"])
+    rel
+    
+}
+
+
+get_oe417_statecode <- function(dat){
+    
+    temp <- grepl("Alabama", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("Alaska", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Arkansas", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("Arizona", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("California", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("Colorado", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("Connecticut", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Delaware", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Florida", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("Georgia", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Southeast"
+    
+    temp <- grepl("Hawaii", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Idaho", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("Indiana", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Illinois", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    
+    temp <- grepl("Kansas", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("Kentucky", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    
+    temp <- grepl("Louisiana", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("Massachusetts", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Maryland", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Maine", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Michigan", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Minnesota", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Mississippi", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("Missouri", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Montana", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("New Hampshire", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("New Mexico", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("North Dakota", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("Nebraska", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("New York", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("Nevada", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("North Carolina", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("New Jersey", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("Ohio", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Oklahoma", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("Oregon", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("Pennsylvania", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("Puerto Rico", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    
+    temp <- grepl("Rhode Island", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("South Carolina", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <-  "Southeast"
+    
+    temp <- grepl("South Dakota", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("Tennessee", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Texas", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "South"
+    
+    temp <- grepl("Utah", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Mountain"
+    
+    temp <- grepl("Virginia", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("Vermont", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "New_England"
+    
+    temp <- grepl("Washington", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "West_Coast"
+    
+    temp <- grepl("Washington DC", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "East_Coast"
+    
+    temp <- grepl("West Virginia", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Wyoming", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "High_Plains"
+    
+    temp <- grepl("Iowa", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Alberta", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("AEP Region", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Wisconsin", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    temp <- grepl("Southern Company Territory", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Unknown", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Other"
+    
+    temp <- grepl("Kentucky, Virginia, West Virginia", dat[,"Area.Affected"])
+    dat[temp,"State_Code"] <- "Midwest"
+    
+    
+    dat
+    
+}
+
+get_event_data <- function(dat1){
+    
+    good <- grepl("\\d",dat1[,"Date.Event.Began"])
+    dat1 <- dat1[good,]
+    good <- grepl("^\\d",dat1[,"Time.Event.Began"])
+    dat1 <- dat1[good,]
+    
+    good <- grepl("^\\d",dat1[,"Date.of.Restoration"])
+    dat1 <- dat1[good,]
+    
+    appeals<- grepl("[Aa]ppeal",dat1[,"Event.Type"])
+    dat1 <- dat1[!appeals,]
+    
+    nocommas <- gsub(",", "", dat1$Number.of.Customers.Affected)
+    good <- grepl("^\\d+$", nocommas)
+    dat1 <- dat1[good, ] 
+    dat1$Number.of.Customers.Affected <- as.numeric(nocommas[good])
+    
+    dat <- get_oe417_statecode(dat1)
+    
+    Event_Start <- strptime(paste(dat[,"Date.Event.Began"],
+                                  dat[,"Time.Event.Began"], sep=" "), format = "%m/%d/%Y %I:%M %p")
+    
+    Event_End <- strptime(paste(dat[,"Date.of.Restoration"],
+                                dat[,"Time.of.Restoration"],sep=" "), format = "%m/%d/%Y %I:%M %p")
+    
+    Event_Duration <- as.numeric(difftime(Event_End ,Event_Start, units='hours'))
+    
+    
+ #######################################
+    
+    
+    Event_Time <- strptime(dat[,"Time.Event.Began"],     format = "%I:%M %p")
+    negatives <- Event_Duration < 0
+    
+    dat$Start_Time <- Event_Start
+    dat$End_Time <- Event_End
+    dat$Duration <- Event_Duration
+    dat$Total_Customer_Hours <- dat$Number.of.Customers.Affected * Event_Duration
+    dat$Event_Time <- Event_Time
+    
+    dat <- dat[!negatives,]
+    dat <- dat[dat$Duration < 20000,]
+    
+    dat <- dat[dat$Number.of.Customers.Affected > 0,]
+    
+    dat <- na.omit(dat)
+    
+    dat[,"Event_Type"] <- "TBD"
+    dat[,"Event_Group"] <- "TBD"
+    
+    dat[grepl("Weather", dat[,"Event.Type"]),"Event_Type"] <- "weather"
+    
+    temp <- grepl("Thunderstorm", dat[,"Event_Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Hail", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Storm", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Major Storm", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Tornado", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Winter", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Ice", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "weather"
+    
+    temp <- grepl("Vandalism", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "all_other"
+    
+    temp <- grepl("Sabotage", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "all_other"
+    
+    temp <- grepl("Load", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "load_shed"
+    
+    temp <- grepl("Equipment", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("Islanding", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    #temp <- grepl("Appeal", dat[,"Event.Type"])
+    #dat[temp,"Event_Type"] <- "load_shed"
+    
+    temp <- grepl("Transmission", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("Distribution", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("Attack", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "all_other"
+    
+    temp <- grepl("Fuel", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("[Vv]oltage [Rr]eduction", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "load_shed"
+    
+    temp <- grepl("Uncontrolled Loss", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("Operation", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "equipment"
+    
+    temp <- grepl("Earthquake", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "earthquake"
+    
+    temp <- grepl("Other", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "all_other"
+    
+    temp <- grepl("Physical", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "all_other"
+    
+    temp <- grepl("Generation", dat[,"Event.Type"])
+    dat[temp,"Event_Type"] <- "load_shed"
+    
+    #################################################################
+    
+    dat[,"Event_Subtype"] <- dat[,"Event_Type"]
+    dat$Event_Group <- dat[,"Event_Type"]
+    
+    weather <- grepl("Weather", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "weather"
+    
+    weather <- grepl("Thunderstorm", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "thunderstorm"
+    
+    weather <- grepl("Hail", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "thunderstorm"
+    
+    weather <- grepl("Storm", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "weather"
+    
+    weather <- grepl("Major Storm", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "major_storm"
+    
+    weather <- grepl("Tornado", dat[,"Event.Type"])
+        dat[weather,"Event_Subtype"] <- "tornado"
+    
+    weather <- grepl("Winter", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "winter"
+    
+    weather <- grepl("Ice", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "winter"
+    
+    weather <- grepl("Public", dat[,"Event.Type"])
+    dat[weather,"Event_Subtype"] <- "public_appeal"
+    
+    dat #[,c(1:9)]
+    
+}
+get_year_data <- function(dat, rel){
+
+    
+
+    statelist <- unique(rel[,"State_Code"])
+
+    for(state in statelist){
+        
+        print(head(dat))
+        aggstatehours <- aggregate(Total_Customer_Hours/10^6 ~ State_Code, 
+                    sum, 
+                    data = dat)
+        
+        colnames(aggstatehours) <-  c("State_Code", "CustomerHours")
+
+        aggstatemean <- aggregate(cbind( Total_Customer_Hours/10^6) ~ State_Code, 
+                      mean, 
+                      data = dat)
+        colnames(aggstatehours) <-  c("State_Code", "meanhours")
+
+        aggstatesd <- aggregate(cbind( Total_Customer_Hours/10^6) ~ State_Code, 
+                      sd, 
+                      data = dat)
+        colnames(aggstatehours) <-  c("State_Code", "sd_hours")
+
+        aggdatsummary <- aggregate(cbind( Total_Customer_Hours/10^6) ~ State_Code, 
+                      summary, 
+                      data = dat)
+
+        aggdatworst <- aggregate(cbind( Total_Customer_Hours/10^6) ~ State_Code, 
+                           summary, 
+                           data = dat)[,7]
+
+        rel[,"State_Customer_Hours"] <- 0
+        rel[,"State_Major_Event_Count"] <- 0
+        rel[,"State_Mean_Event_Hours"] <- 0
+        rel[,"State_Mean_STD_DEV_Hours"] <- 0
+
+        stateeventcount <- table(dat$State_Code)
+        dfeventcount <- data.frame(tab)
+        colnames(dfeventcount) <- c("State_Code", "Frequency")
+
+        statedatloc <- grepl("TX", merged$State)
+        locations <- grepl("TX",rel2013$State)
+
+        eventcount <- merge(dfeventcount, aggstatemean, by = "State_Code")
+        rel[locations,"State_Major_Event_Count"] <-  statefigure
+
+        merged <- merge(eventcount, aggstatehours, by = "State_Code")
+        statefigure <- merged[statedatloc==TRUE,"V1"]
+        rel[locations,"State_Customer_Hours"] <-  statefigure
+
+        merged <- merge(eventcount, aggstatemean, by = "State_Code")
+            statefigure <- merged[statedatloc==TRUE,"V1"]
+        rel[locations,"State_Mean_Event_Hours"] <-  statefigure
+
+        merged <- merge(eventcount, aggstatesd, by = "State_Code")
+        statefigure <- merged[statedatloc==TRUE,"V1"]
+        rel[locations,"State_Mean_STD_DEV_Hours"] <-  statefigure
+
+    }
+
+}
 ```
 
-```{r raw_data, echo=FALSE}
-
-
-# unzip("./xls_data/EIA861/f8612012.zip", files = NULL, list = FALSE, overwrite = TRUE,
-#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2012", unzip = "internal",
-#       setTimes = FALSE)
-# unzip("./xls_data/EIA861/f8612013.zip", files = NULL, list = FALSE, overwrite = TRUE,
-#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2013", unzip = "internal",
-#       setTimes = FALSE)
-# unzip("./xls_data/EIA861/f8612014.zip", files = NULL, list = FALSE, overwrite = TRUE,
-#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2014", unzip = "internal",
-#       setTimes = FALSE)
-# unzip("./xls_data/EIA861/f8612015.zip", files = NULL, list = FALSE, overwrite = TRUE,
-#       junkpaths = FALSE, exdir = "./xls_data/EIA861/year2015", unzip = "internal",
-#       setTimes = FALSE)
-
-reliability2013 <- read.csv("Data/Reliability_2013.csv",
-         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-reliability2014 <- read.csv("Data/Reliability_2014.csv",
-         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-reliability2015 <- read.csv("Data/Reliability_2015.csv",
-         check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-
-```
 
 ```{r processreliabilitydata, echo=FALSE}
 
-good1 <- grepl("\\d", reliability2013[,"SAIDI.With.MED"])
-good2 <- grepl("\\d", reliability2013[,"SAIDI.Without.MED"])
-good3 <- grepl("\\d", reliability2013[,"Number.of.Customers"])
-good4 <- grepl("\\d", reliability2013[,"Highest.Dist..Voltage"])
-good <- good1 * good2 * good3 * good4
-rel2013 <- reliability2013[good==TRUE,][,c(1:13)]
-nocommas <- gsub(",", "", rel2013$Number.of.Customers)
-rel2013$Number.of.Customers <- as.numeric(nocommas)
-rel2013$Highest.Dist..Voltage <- as.numeric(rel2013$Highest.Dist..Voltage)
-rel2013 <- rel2013[order(rel2013$Highest.Dist..Voltage),]
-volts <- as.numeric(rel2013$Highest.Dist..Voltage)
-rel2013[,"Highest_Feeder"] <- discrete_volts(volts)
+reliability2013 <- read.csv("Data/Reliability_2013.csv",
+                            check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+reliability2014 <- read.csv("Data/Reliability_2014.csv",
+                            check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+reliability2015 <- read.csv("Data/Reliability_2015.csv",
+                            check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+reliability2016 <- read.csv("Data/2016_Annual_Summary.csv", 
+                    check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
 
-good1 <- grepl("\\d", reliability2014[,"SAIDI.With.MED"])
-good2 <- grepl("\\d", reliability2014[,"SAIDI.Without.MED"])
-good3 <- grepl("\\d", reliability2014[,"Number.of.Customers"])
-good4 <- grepl("\\d", reliability2014[,"Highest.Dist..Voltage"])
-good <- good1 * good2 * good3 * good4
-rel2014 <- reliability2014[good==TRUE,][,c(1:13)]
-nocommas <- gsub(",", "", rel2014$Number.of.Customers)
-rel2014$Number.of.Customers <- as.numeric(nocommas)
-rel2014$Highest.Dist..Voltage <- as.numeric(rel2014$Highest.Dist..Voltage)
-rel2014 <- rel2014[order(rel2014$Highest.Dist..Voltage),]
-volts <- as.numeric(rel2014$Highest.Dist..Voltage)
-rel2014[,"Highest_Feeder"] <- discrete_volts(volts)
-
-good1 <- grepl("\\d", reliability2015[,"SAIDI.With.MED"])
-good2 <- grepl("\\d", reliability2015[,"SAIDI.Without.MED"])
-good3 <- grepl("\\d", reliability2015[,"Number.of.Customers"])
-good4 <- grepl("\\d", reliability2015[,"Highest.Dist..Voltage"])
-good <- good1 * good2 * good3 * good4
-rel2015 <- reliability2015[good==TRUE,][,c(1:13)]
-nocommas <- gsub(",", "", rel2015$Number.of.Customers)
-rel2015$Number.of.Customers <- as.numeric(nocommas)
-rel2015$Highest.Dist..Voltage <- as.numeric(rel2015$Highest.Dist..Voltage)
-rel2015 <- rel2015[order(rel2015$Highest.Dist..Voltage),]
-volts <- as.numeric(rel2015$Highest.Dist..Voltage)
-rel2015[,"Highest_Feeder"] <- discrete_volts(volts)
-
-rel2013[, "SAIDI.With.MED"] <- as.numeric(rel2013$SAIDI.With.MED)
-
-rel2014$SAIDI.With.MED <- as.numeric(rel2014$SAIDI.With.MED)
-rel2015[, "SAIDI.With.MED"] <- as.numeric(rel2015$SAIDI.With.MED)
-
-rel2013[, "Number.of.Customers"] <- as.numeric(rel2013$Number.of.Customers)
-rel2014[, "Number.of.Customers"] <- as.numeric(rel2014$Number.of.Customers)
-rel2015[, "Number.of.Customers"] <- as.numeric(rel2015$Number.of.Customers)
+rel2013 <- reliable(reliability2013)
+rel2014 <- reliable(reliability2014)
+rel2015 <- reliable(reliability2015)
 
 ```
 
 
 ```{r processeventdata, echo=FALSE}
 
-
-data2012 <- read.csv("Data/2012_Annual_Summary.csv",
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2012 <- data2012[,c(1:9)]
-data2013 <- read.csv("Data/2013_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2014 <- read.csv("Data/2014_Annual_Summary.csv",
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-
-data2015 <- read.csv("Data/2015_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2015 <- data2015[,-c(1)]
-data2015 <- data2015[,c(1:10)]
-data2015 <- data2015[,-c(7)]
-
-data2016 <- read.csv("Data/2016_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2016 <- data2016[,-c(1)]
-data2016 <- data2016[,c(1:10)]
-data2016 <- data2016[,-c(7)]
-
-data2011 <- read.csv("Data/2011_Annual_Summary.csv",
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2011 <- data2011[,c(1:9)]
-data2012 <- read.csv("Data/2012_Annual_Summary.csv",
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2012 <- data2012[,c(1:9)]
-data2013 <- read.csv("Data/2013_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2014 <- read.csv("Data/2014_Annual_Summary.csv",
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-
-data2015 <- read.csv("Data/2015_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2015 <- data2015[,-c(1)]
-data2015 <- data2015[,c(1:10)]
-data2015 <- data2015[,-c(7)]
-
-data2016 <- read.csv("Data/2016_Annual_Summary.csv", 
-                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
-data2016 <- data2016[,-c(1)]
-data2016 <- data2016[,c(1:10)]
-data2016 <- data2016[,-c(7)]
-
-
-```
-
-
-```{r process1, echo=FALSE}
+rel2013 <- get_statecode(rel2013)
+rel2014 <- get_statecode(rel2014)
+rel2015 <- get_statecode(rel2015)
+#rel2016 <- get_statecode(rel2016)
 
 reliability <- rbind(rel2013, rel2014, rel2015)
+autorel <- reliability[reliability$Automatic_Report=="Y",]
 
-dat <- rbind(data2011, data2012, data2013, data2014, data2015, data2016)
+generalcols <- c("Data.Year","Utility.Number", "Utility.Name", "Size_Class", "State", "State_Code", "Region", "Number.of.Customers") #8 
+
+saidacols <- c("SAIDI.Without.MED", "SAIFI.Without.MED") #2
+# equipmentcols <- c("Highest.Dist..Voltage", "Highest_Feeder", 
+#                    "Automatic_Report") #4
+# eventdatacols <- c("Number_of_Affected_Customers",
+#                    "Start_Time", "Duration", "Total_Customer_Hours") #4
+
+predictcols <- c("SAIFI.With.MED", "SAIDI.With.MED",
+                 "SAIFI.With.MED.Minus.LOS", "SAIDI.With.MED.Minus.LOS")
+                # "SAIDI.With.MED.Minus.LOS",  #4
+
+relreport <- autorel[, c(generalcols,saidacols, predictcols)]
+colnames <- c("Year","Utility_ID", "Utility_Name",
+              "Size_Class", "State", "State_Code",
+              "Region", "Number_of_Customers","SAIDI_Without_MED",
+              "SAIFI_Without_MED", "SAIFI_With_MED",
+              "SAIFI_With_MED_Minus_LOS", "SAIDI_With_MED_Minus_LOS", "SAIDI_With_MED")
+
+colnames(relreport) <- colnames
+
+#############################################################
+
+rdata2012 <- read.csv("Data/2012_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+rdata2012 <- rdata2012[,c(1:9)]
+
+rdata2013 <- read.csv("Data/2013_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+rdata2014 <- read.csv("Data/2014_Annual_Summary.csv",
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+rdata2015 <- read.csv("Data/2015_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+rdata2016 <- read.csv("Data/2016_Annual_Summary.csv", 
+                     check.names = TRUE, sep=",", skip=1,  stringsAsFactors = FALSE)
+
+data2012 <- rdata2012
+data2013 <- rdata2013
+data2014 <- rdata2014
+
+data2015 <- rdata2015[,-c(1)]
+data2015 <- data2015[,c(1:10)]
+data2015 <- data2015[,-c(7)]
+
+data2016 <- rdata2016[,-c(1)]
+data2016 <- data2016[,c(1:10)]
+data2016 <- data2016[,-c(7)]
+events2013 <- get_event_data(data2013)  ## includes all events selected for study
+events2014 <- get_event_data(data2014)  ## includes all events selected for study
+timedat <- rbind(events2013, events2014) [,-c(1:4,5,7,12,15,16)]
+colnames(timedat) <- c("NERC_Region","MW_Loss","Number_of_Affected_Customers", "State_Code","Start_Time","Duration","Total_Customer_Hours","Event_Type", "Event_Subtype")
 
 ```
 
-```{r process2, echo=FALSE, results='asis', fig.width=4, fig.height=2}
 
-good <- grepl("\\d",dat[,"Date.Event.Began"])
+### Raw Data
 
-dat <- dat[good,]
-good <- grepl("^\\d",dat[,"Time.Event.Began"])
-dat <- dat[good,]
+##### The raw data for this analysis are DOE annual reports which are available as Excel files on their web pages[2]. The Excel files were first re-saved as comma delimited text files without changes. Important facts regarding these sources as well as the processing and transforming of raw data and the reproducibility of this analysis are given starting at Note[2] at the end of this report. 
 
-good <- grepl("^\\d",dat[,"Date.of.Restoration"])
-dat <- dat[good,]
+###  Preliminary Observations
 
-nocommas <- gsub(",", "", dat$Number.of.Customers.Affected)
-good <- grepl("^\\d+$", nocommas)
-dat <- dat[good, ] 
-dat$Number.of.Customers.Affected <- as.numeric(nocommas[good])
+<center>Figure-1</center>
 
-```
+```{r plotdistv, echo=FALSE, fig.width = 9, fig.height= 6, results='asis'}
 
-```{r process3, echo=TRUE}
-
-Event_Start <- strptime(paste(dat[,"Date.Event.Began"],
-                              dat[,"Time.Event.Began"], sep=" "), format = "%m/%d/%Y %I:%M %p")
-
-Event_End <- strptime(paste(dat[,"Date.of.Restoration"],
-                            dat[,"Time.of.Restoration"],sep=" "), format = "%m/%d/%Y %I:%M %p")
-
-Event_Duration <- as.numeric(difftime(Event_End ,Event_Start, units='hours'))
-
-```
-
-
-
-```{r process4, echo=FALSE}
-
-Event_Time <- strptime(dat[,"Time.Event.Began"],     format = "%I:%M %p")
-negatives <- Event_Duration < 0
-
-dat$Start_Time <- Event_Start
-dat$End_Time <- Event_End
-dat$Duration <- Event_Duration
-dat$Customer_Hours <- dat$Number.of.Customers.Affected * Event_Duration
-dat$Event_Time <- Event_Time
-
-dat <- dat[!negatives,]
-dat <- dat[dat$Duration < 20000,]
-
-dat <- dat[dat$Number.of.Customers.Affected > 0,]
-
-dat <- na.omit(dat)
-
-# dim(dat)[1]
+ggplot(rel2015, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
+    geom_point(aes(log10(Number.of.Customers), log10(SAIDI.With.MED), color=Highest_Feeder),size=3, alpha=0.6) +
+    guides(color=guide_legend(title="High Feeder (KV)")) +
+    scale_colour_gradient(low = "green", high = "Brown") +
+    xlab("Number of Customers") +
+    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 4)) +
+    xlab("Number of Customers") +
+    scale_x_continuous(breaks = c(2,3,4,5,6, 7), minor_breaks = seq(0 , 10, 0.5),
+                       labels = c("100" , "1000" , "10,000", "100,000", "1-million", "10-million")) +
+    scale_y_continuous(breaks = c(0, 1, 2, 3, 4), minor_breaks = seq(0 , 100, 0.5),
+                       labels = c("1" , "10" , "100", "1000", "10,000")) +
+    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 4)) +
+    ggtitle("SAIDI for Year 2015") +
+    
+     ylab("SAIDI (Minutes per Year)") +
+     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
 
 ```
 
 <br><br>
 
 ###  SAIDI: Average Customer Time without Power
-##### SAIDI is an acronym for "System Average Interruption Duration Index" and is the average total time without power for a customer of an electric utility. It usually is calculated for a one-year period. To calculate SAIDI, let $U_i$ be the outage time for a disturbance event, $N_i$ is the number of customers impacted by the event, $N_y$ is the total number of events for the year, and $N_T$ is the total number of customers.
+
+##### SAIDI is an acronym for "System Average Interruption Duration Index" and is the average total time without power for a customer of an electric utility. It usually is calculated for a one-year period. To calculate SAIDI, let $U_i$ be the duration of a disturbance event, $N_i$ is the number of customers impacted by the event, $N_y$ is the total number of events for the year, and $N_T$ is the total number of customers.
 
 ##### $$SAIDI = \frac {\sum_{i=1}^{N_y} {U_i \cdot N_i}}{N_T}$$ 
 
@@ -562,10 +1148,8 @@ get_saidi_hist <- function(inputVar, note1){
      axis(1, at=x, labels=xlabs, col.axis="black", las=1, cex.axis=1.6)
      axis(2, at=y, labels=ylabs, col.axis="black", las=2, cex.axis=1.6)
      mtext("Hours", side=1, line=3, cex=1.8)
-    # mtext("Frequency of Occurance", side=2, line=4, cex=1.1)
-    # mtext(note1, side=3, line=-0, cex=1.1)
+    
      abline(h=seq(0,1000,by=50), col = "#9999FF")
-    #hist(c(1,2,3))
 }
 
 x <-     c(1.001, 2, 3, 4, 5, 6, 7, 8)
@@ -573,83 +1157,11 @@ x <-     c(1.001, 2, 3, 4, 5, 6, 7, 8)
 y <- seq(0, 250, by=50)
 ylabs <- seq(0, 250, by=50)
 
-
 ```
 
-###  Exploring the Raw Data
+##  Exploring the Power Outage Events
 
-####  All Utilities:
-
-```{r plotdistv, echo=FALSE, fig.width = 9, fig.height= 6}
-
-ggplot(rel2015, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
-    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
-    guides(color=guide_legend(title="High Feeder (KV)")) +
-    #labs(color='NEW LEGEND TITLE') +
-    scale_colour_gradient(low = "green", high = "Blue") +
-    #scale_fill_manual("legend_title") + # values=c("orange","red")
-    #scale_fill_continous(name = "New Legend Title") +
-    xlab("Number of Customers") +
-    scale_x_continuous(breaks = c(2,3,4,5,6), minor_breaks = seq(0 , 10, 0.5), labels = c("100" , "1000" , "10,000", "100,000", "1,000,000")) +
-    scale_y_continuous(breaks = c(0, 1, 2, 3), minor_breaks = seq(0 , 100, 0.5), labels = c("1" , "10" , "100", "1000")) +
-    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 3)) +
-    ggtitle("SAIDI for Year 2015") +
-    
-     ylab("SAIDI (Minutes per Year)") +
-     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
-          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
-          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
-          axis.title.x = element_text(color="#101010", size=16),
-          axis.title.y = element_text(color="#101010", size=16),
-          text = element_text(size=16),
-          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
-          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
-          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
-              size = 0.5, linetype = "solid"),
-          plot.background = element_rect(fill = "#FEFFFF"))
-
-```
-
-<br><br>
-
-####  Utilities with at least 50,000 Customers:
-
-```{r plot203, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
-
-big <- rel2015[rel2015$Number.of.Customers>50000,]
-
-ggplot(big, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
-    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
-    guides(color=guide_legend(title="High Feeder (KV)")) +
-    #labs(color='NEW LEGEND TITLE') +
-    scale_colour_gradient(low = "green", high = "Blue") +
-    #scale_fill_manual("legend_title") + # values=c("orange","red")
-    #scale_fill_continous(name = "New Legend Title") +
-    xlab("Number of Customers") +
-    scale_x_continuous(breaks = c(2,3,4,5,6), minor_breaks = seq(0 , 10, 0.5), labels = c("100" , "1000" , "10,000", "100,000", "1,000,000")) +
-    scale_y_continuous(breaks = c(0, 1, 2, 3), minor_breaks = seq(0 , 100, 0.5), labels = c("1" , "10" , "100", "1000")) +
-    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 3)) +
-    ggtitle("SAIDI for Year 2015") +
-    
-     ylab("SAIDI (Minutes per Year)") +
-     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
-          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
-          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
-          axis.title.x = element_text(color="#101010", size=16),
-          axis.title.y = element_text(color="#101010", size=16),
-          text = element_text(size=16),
-          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
-          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
-          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
-              size = 0.5, linetype = "solid"),
-          plot.background = element_rect(fill = "#FEFFFF"))
-
-
-```
-
-<br><br>
-
-###  Exploring the Disturbance Time Data
+<center>Figure-2</center>
 
 ```{r plot2, echo=FALSE}
 
@@ -658,30 +1170,32 @@ x <-     c(1.001, 2, 3, 4, 5, 6, 7, 8)
 xlabs <- c(0, 0.1, 1, 10, 100, 1000, 10000, 100000)
 y <- seq(0, 500, by=50)
 ylabs <- seq(0, 500, by=50)
-hist(log10(dat$Duration[1:1109]+0.001)+3.001, breaks=c(0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+hist(log10(timedat$Duration[1:1109]+0.001)+3.001, breaks=c(0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
      xlim=c(1.2,6), ylim=c(0,200), xlab="", ylab="",
      main="Duration of Electric Power Outages",
      right=FALSE, xaxt="n", yaxt="n", freq=TRUE, cex.main=1.5, cex.sub=1.5, col="#9999FF")
 axis(1, at=x,labels=xlabs, col.axis="black", cex.lab=1.5)
 axis(2, at=y, labels=ylabs, col.axis="black", las=2, cex.axis=1.2)
-mtext("Total Duration of Interruptions (Minutes per Year)", side=1, line=2.5, cex=1.5)
+mtext("Hours", side=1, line=2.5, cex=1.5)
 mtext("Frequency of Occurance", side=2, line=4, cex=1.5)
 mtext("Disturbances in the United States for years 2011 to 2016", side=3, line=-0, cex=1.1)
 abline(h=seq(0,1000,by=50), col = "#9999FF")
 
 ```
 
-##### The distribution of outage times extends over durations from near zero to over 100-hours. The distribution has a log-normal shape. The peak of the distribution indicates a typical outage of about 50-hours or about two days. The average or mean outage is 40.5 hours.
+##### The distribution of the outage durations extends from near zero to over 100-hours. The distribution in the figure below has a log-normal shape; note the logarithmic scale of the x-axis. The average or mean outage is 34.7 hours.
 
 ```{r process5a, echo=TRUE}
 
-paste(formatC(sum(dat$Duration)/509), digits=1, "-hours", sep="")
+paste(formatC(sum(timedat$Duration)/(dim(timedat)[1])), digits=3, "-hours", sep="")
 
 ```
 
-##### The vast majority of the outages last no more than about two weeks (168-hours).
+##### The vast majority of outages last no more than one week (168-hours).
 
-<br><br>
+<center class="centeredh3"></center>
+
+<center>Figure-3</center>
 
 ```{r plot3, echo=FALSE}
 
@@ -691,10 +1205,21 @@ x <-     seq(0, 24, by=2)
 xlabs <- seq(0, 24, by=2)
 y <- seq(0, 500, by=20)
 ylabs <- seq(0, 500, by=20)
+# str(timedat$Start_Time)
+tchar <- as.character(events2013$Start_Time)
+tchar2 <- unlist(lapply(strsplit(tchar, " "), function(x){x}[2]))
 
+hrslist <- unclass(strptime(tchar2, format=c('%H:%M:%S')) -
+                   strptime("00:00:00 AM", format=c('%H:%M:%S') )
+)/3600
 
-hist(unclass(dat$Event_Time - strptime("12:00 AM", format = "%I:%M %p"))/3600, #xlab="Time difference",
-     breaks=c(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24),
+hrs <- unlist(lapply(hrslist,function(x) {
+    attributes(x) < NULL
+    x
+    }))
+
+hist(hrs, 
+     #breaks=c(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24),
      xlim=c(0,24), ylim=c(0,100), xlab="", ylab="",
      main="Time of Day",
      right=FALSE, xaxt="n", yaxt="n", freq=TRUE, cex.main=1.5, cex.sub=1.5, col="#9999FF")
@@ -705,7 +1230,6 @@ mtext("Frequency of Occurance", side=2, line=4, cex=1.5)
 mtext("Disturbances in the United States for years 2011 to 2016", side=3, line=-0, cex=1.1)
 abline(h=seq(0,1000,by=20), col = "#9999FF")
 
-
 ```
 
 
@@ -713,9 +1237,9 @@ abline(h=seq(0,1000,by=20), col = "#9999FF")
 
 <br><br>
 
-### Sample Calculation of SAIDI
+### Calculating SAIDI
 
-##### Let's assume that there were three disturbances during the year at a utility with durations of 10 hours, 20 hours, and 60 hours that in turn affected 30,000, 20,000, and 5,000 customers out of a total of 1 million customers.  
+##### Let's assume that there were three disturbances during the year at a utility with durations of 10 hours, 20 hours, and 60 hours that in turn affected 30,000, 20,000, and 8,000 customers out of a total of 1 million customers.  
 
 ##### $$SAIDI = \frac {10 \cdot 30000 + 20 \cdot 20000 + 60 \cdot 8000}{1,000,000}$$ 
 
@@ -746,28 +1270,23 @@ paste ("SAIDI = ", formatC(SAIDI, digits=3), "-minutes",sep="")
 
 ```
 
-<br><br>
-
 ### SAIFI: Frequency of Interruptions
 
-##### SAIFI is an acronym for System Average Interruption Frequency Index (SAIFI) and the average number of times that customers experience an outage or interruption, usually over a one-year interval. The SAIFI index could depend on how it is measured unless you could keep track of how many times every customer loses power. Let $\lambda_i$ be the average frequency of interruptions in areas that we call "neighborhoods" which must be small enough so that most people within one usually lose power together when disruptions occur. Let $N_i$ is the number of customers in each neighborhood and $N$ be the number of neighborhoods in the service area.
+##### SAIFI is an acronym for System Average Interruption Frequency Index (SAIFI) and indicates the average number of times that customers experience outages, usually over one-year. The SAIFI figure could depend on how it is measured unless you could keep track of how many times every customer loses power. Let $\lambda_i$ be the average frequency of interruptions over a one year period in areas that we call "neighborhoods" which are small enough so that most people within one lose power together when disruptions occur. We call $\lambda_i$ the failure rate. Let $N_i$ be the number of customers in each neighborhood and $N$ be the number of neighborhoods for the entire area served by the utility.
 
-##### The number of times each neighborhood loses power (failures) must be tabulated during a one-year period and this is the failure rate $\lambda_i$ for particular neighborhoods. The number of failures and the number of customers for each neighborhood are multiplied together and summed over all neighborhoods. Finally, the sum is divided by the total number of customers $N_T$. 
+##### The failure rate and the number of customers in each neighborhood are multiplied together and summed over all neighborhoods. Finally, the sum is divided by the total number of customers $N_T$. 
 
 #### $$SAIFI = \frac {\sum_{i=1}^{N} {\lambda_i \cdot N_i}}{N_T}$$ 
 
-### Sample Calculation of SAIFI
+### Calculating SAIFI
 
-##### Let's assume that there were three neighborhoods which experienced 5, 4, and 2 interruptions (failures) during the year in regions of 1000, 2000. and 7000 customers. This corresponds to failure rates of 5, 4, and 2 for the year.   
+##### Let's assume that there were three neighborhoods which respectively experienced 5, 4, and 2 interruptions (failures) during the year in regions of 1000, 2000. and 7000 customers. This corresponds to failure rates of 5, 4, and 2 for the year.   
 
-#### $$SAIFI = \frac {5 \cdot 1000 + 4 \cdot 2000 + 2 \cdot 7000}{1,000,000}$$ 
+#### $$SAIFI = \frac {5 \cdot 1000 + 4 \cdot 2000 + 2 \cdot 7000}{10,000}$$ 
 
 ##### $\lambda_1 = 5$ failures; $\lambda_2 = 4$ failures; $\lambda_3 = 2$ failures
-##### $N_1 = 1000$ impacted customers; $N_2 = 2000$ impacted customers; $N_i = 7000$ impacted customers
+##### $N_1 = 1000$ impacted customers; $N_2 = 2000$ impacted customers; $N_3 = 7000$ impacted customers
 ##### $N_y = 3$ regions; N_T = 10,000$ total customers
-
-<br><br>
-
 
 ```{r saifi2, echo=TRUE}
 
@@ -777,30 +1296,853 @@ paste ("SAIFI = ", SAIFI, " Events per year",sep="")
 ```
 
 
-### Further Work
+<br><br>
 
-##### Can we predict the SAIDI figure from the other data? Is it within the expected range for the area and type of uility? Is the data for year 2016 within the espected range? These are questions that I plan to explore using machine learning.   
+### Weather - The most Significant Problem
+
+##### The significant factor for power disruptions is the weather. The other reasons are small by comparison by more than an order of magnitude. 
+
+<center>Figure-4</center>
+
+```{r weather, echo=FALSE}
+
+#timedat[timedat$Event_Type=="load_shed",]
+
+ggplot(timedat, aes(Event_Type, Total_Customer_Hours/10^6)) + #, )
+    geom_col(fill="#9999FF") + #
+    xlab("Cause of Disrruption") +
+    ylab("Customer Hours without Power (millions)") +
+    scale_y_continuous(breaks = seq(0, 1000, by=200), minor_breaks = seq(0 , 10000, 100), labels = seq(0, 1000, by=200)) +
+    coord_cartesian(ylim = c(0,1000)) +
+    ggtitle("Total Customer Hours 2013-2014") +
+    ylab("Service Hours (Millions)") +
+    theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          #panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16, hjust=0.5, vjust=-1),
+          axis.title.y = element_text(color="#101010", size=16, hjust=0.5, vjust=1),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+                                          size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#EEEEEEFF"))
+
+```
 
 <br><br>
 
-### Notes:
+<center>Figure-5</center>
 
-##### [1] Jordan Wirfs-Brock of Inside Energy investigated the disturbance reports in August, 2014 and she maintains a website with data over a 15-year period. 
+```{r weather2, echo=FALSE}
 
-##### http://insideenergy.org/2014/08/18/data-explore-15-years-of-power-outages/
+weatherdat <- timedat[timedat$Event_Type == "weather",]
 
-##### [2] Code for this reproducible report is available at https://github.com/marcelMerchat/. 
+aggweather <- aggregate(cbind( Total_Customer_Hours/10^6) ~ Event_Subtype,
+            sum,
+            data = weatherdat)
+ggplot(aggweather, aes(Event_Subtype, V1)) +
+     geom_bar(stat="identity", color="black", fill="#9999FF") +
+    xlab("Cause of Disrruption") +
+    ylab("Customer Hours without Power (millions)") +
+    scale_y_continuous(breaks = seq(0, 6000, by=100), minor_breaks = seq(0 , 10000, 50), labels = seq(0, 6000, by=100)) +
+    coord_cartesian(ylim = c(0,500)) +
+    ggtitle("Weather Problems Breakdown") +
+    ylab("Service Hours (Millions)") +
+    theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
 
-##### [3] Since these files are only available for manual downloading, the process began by manually downloading them because DOE does not have an API or other method whereby this can be accomplished automatically. Although a single program should ideally accomplish everything and nothing should be manual for reproducible analysis. After downloading, the files were placed in the project folder. A second issue concerns the nature of the raw data files as Excel files. The files were opened with Excel and re-saved as a comma-separated-values (csv) text files without changes. The files are Excel reports and are not formatted as data files.
+          axis.title.x = element_text(color="#101010", size=16, hjust=0.5, vjust=-1),
+          axis.title.y = element_text(color="#101010", size=16, hjust=0.5, vjust=1),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+                                          size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#EEEEEEFF"))
 
-##### [4] However, we can read Excel files directly by R programs using packages such as RExcel. I did not do this for this preliminary report; instead, I opened the files manually with Excel and re-saved them as exported comma-delimited text files. Although involved to setup, Excel files should be automatically read but this is perhaps unreasonable for a preliminary study such as this. From the viewpoint of an R program, Excel files are equivalent to compressed binary files and are handled in a similar manner except rather specialized package tools are required to read and write to them directly.
+```
 
-##### [5] The raw Excel files and the corresponding csv files are included in my Github repository for this project.
+##### The all_other category includes vandalism, sabotage, cyber-attacks and the like. But these issues were not important for the years investigated. 
+
+<br><br>
+
+
+### Relationship between SAIDA and SAIFI. 
+
+#####  The graph below shows that SAIDA is correlated with SAIFI. Furthermore, the SAIFI figure imposes a lower bound for SAIDI. Major events cause the SAIDA figure to increase in a somewhat unpredictable way. Our machine-learning algorithm attempts to determine if lowering SAIFI might also lower SAIDA and why this may or may not be the case. 
+
+<center>Figure-6</center>
+
+```{r saidavssaifi1, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
+
+ggplot(autorel, aes(SAIDI.Without.MED, SAIDI.With.MED)) +
+    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
+    guides(color=guide_legend(title="High Feeder (KV)")) +
+    scale_colour_gradient(low = "green", high = "Brown") + # discrete scale
+    coord_cartesian(xlim = c(0, 1600), ylim = c(0, 8000)) +
+    ggtitle("SAIDI with Automatic Detection for Year 2015") +
+    xlab("Without Major Event Days (Minutes per Year") +
+    ylab("With Major Event Days (Minutes per Year") +
+     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+<br><br>
+
+### Zooming in on Data
+
+##### The outlier points in the plot above can no longer be seen after zooming.
+
+<center>Figure-7</center>
+
+```{r regress201, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
+
+fit <- function(df) {
+    fit <- lm(df$SAIDI.With.MED ~ df$SAIDI.Without.MED)
+    fit$coefficients
+}
+
+fit2 <- function(df) {
+    fit <- lm(df$SAIDI.With.MED ~ df$SAIDI.Without.MED + df$Size_Class)
+    fit$coefficients
+}
+
+fit2intr <- function(df) {
+    fit <- lm(df$SAIDI.With.MED ~ df$SAIDI.Without.MED + df$Size_Class * df$SAIDI.Without.MED + df$Size_Class)
+    fit$coefficients
+}
+
+fit2intr <- fit2intr(reliability) 
+# levels(autorel$Size_Class)[1]
+b1 <- fit2intr[1]
+m1 <- fit2intr[2]
+
+# small companies
+b2 <- fit2intr[3]
+b2 <- b1 + b2
+m2 <- fit2intr[4]
+m2 <- m1 + m2
+
+len <- length(autorel$SAIDI.Without.MED)
+lenend <- len + 1
+
+modelx <- seq(1,len,by=1) 
+modely <- unlist(lapply(modelx, function(x){ m1 * x + b1}[[1]][1]))
+
+modelxend <- seq(2,lenend,by=1) 
+modelyend <- unlist(lapply(modelxend, function(x){ m1 * x + b1}[[1]][1]))
+modeldat1 <- data.frame(modelx, modely, modelxend, modelyend)
+
+modelx <- seq(1,len,by=1) 
+modely <- unlist(lapply(modelx, function(x){ m2 * x + b2}[[1]][1]))
+
+modelxend <- seq(2,lenend,by=1) 
+modelyend <- unlist(lapply(modelxend, function(x){ m2 * x + b2}[[1]][1]))
+modeldat2 <- data.frame(modelx, modely, modelxend, modelyend)
+
+ggplot(autorel, aes(SAIDI.Without.MED, SAIDI.With.MED)) +
+    geom_point(aes(color=Size_Class), size=3, alpha=0.6) +
+    scale_color_manual(values=c("green","brown")) +
+    coord_cartesian(xlim = c(0, 500), ylim = c(0, 1000)) +
+    ggtitle("SAIDI with Automatic Detection for Year 2015") +
+    xlab("Without Major Event Days (Minutes per Year)") +
+    ylab("With Major Event Days (Minutes per Year)") +
+    geom_segment(aes(x = modelx, y = modely, xend = modelxend, yend = modelyend),
+                 data = modeldat1, size=2, color="brown") +
+    # geom_segment(aes(x = modelx, y = modely, xend = modelxend, yend = modelyend),
+    #              data = modeldat2, size=2, , color="green") +
+    theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+<br><br>
+
+### Under-Reporting without Automatic Detection 
+
+##### The plot below indicates companies report higher SAIDI figures when disruptions are reported automatically. But it is likely that this reflects under-reporting for companies without automatic detection. 
+
+<center>Figure-8</center>
+
+```{r plot204, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
+
+ggplot(rel2015, aes(Automatic_Report, log10(SAIDI.With.MED+0.0001))) +
+    geom_point(aes(color=Automatic_Report),size=3, alpha=0.6) +
+    scale_color_manual(values=c("green","brown")) +
+    xlab("Automatic Detection ?") +
+    scale_y_continuous(breaks = c(-1, 0, 1, 2, 3, 4), minor_breaks = seq(0 , 100, 0.5),
+                       labels = c("0.1", "1" , "10" , "100", "1000", "10,000")) +
+    coord_cartesian(ylim = c(-2, 4)) +
+    ggtitle("Detection Method") +
+
+     ylab("SAIDI (Minutes per Year)") +
+     theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+##### It's conceivable a separate study of companies without automatic detection might be attempted. There might well be some human factors involved. An automatic report may be harder to miss; manual detection might require separate verification and even organization to come to the attention of managers. Clearly SAIDA estimates and predictions need to be adjusted for the case of manual detection. 
+
+### SAIDA and Utility Company Size
+
+#####  The Figure below indicates the relationship between SAIDA and the number of customers of a utility. SAIDA is more predictable for utilities with around 200,000 customers or more but size does not affect the average SAIDA figure very much. However, it affects SAIDA variability among different utilities. 
+
+<center>Figure-9</center>
+
+```{r auto201, echo=FALSE, fig.width = 9, fig.height= 6, fig.show="hold"}
+
+ggplot(autorel, aes(log10(Number.of.Customers), log10(SAIDI.With.MED))) +
+    geom_point(aes(color=Highest_Feeder),size=3, alpha=0.6) +
+    guides(color=guide_legend(title="High Feeder (KV)")) +
+    scale_colour_gradient(low = "green", high = "Brown") + # discrete scale
+    xlab("Number of Customers") +
+    ylab("SAIDI (Minutes per Year)") +
+    scale_x_continuous(breaks = c(2,3,4,5,6,7), minor_breaks = seq(0 , 10, 0.5),
+                        labels = c("100" , "1000" , "10,000", "100,000",
+                                   "1-million","10-million")) +
+    scale_y_continuous(breaks = c(-1, 0, 1, 2, 3, 4), minor_breaks = seq(0 , 100, 0.5),
+                        labels = c("0.1", "1" , "10" , "100", "1000", "10,000")) +
+    coord_cartesian(xlim = c(2, 7), ylim = c(-1, 4)) +
+    ggtitle("SAIDI vs Company Size for 2015") +
+    theme(plot.title = element_text(hjust = 0.5, color="#101010", size=18, face="bold.italic"),
+          panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+          panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+          axis.title.x = element_text(color="#101010", size=16),
+          axis.title.y = element_text(color="#101010", size=16),
+          text = element_text(size=16),
+          axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+          panel.background = element_rect(fill = "#FEFFFF", colour = "#101010",
+              size = 0.5, linetype = "solid"),
+          plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+
+#####  For this preliminary study, we only investigate utilities with more than 80,000 customers. More study would be required to evaluated the higher variability for smaller companies. We also limit the scope to companies with automatic outage detection. 
+
+
+```{r machine learning1, echo=FALSE, fig.width = 9, fig.height= 6}
+
+mergedat <- merge(autorel, timedat, by = "State_Code")
+generalcols <- c("Data.Year","Utility.Number", "Utility.Name", "Size_Class", "State", "State_Code", "NERC_Region", "Region", "Number.of.Customers") #8 
+saidacols <- c("SAIDI.Without.MED", "SAIFI.Without.MED") #2
+equipmentcols <- c("Highest.Dist..Voltage", "Highest_Feeder", 
+                   "Automatic_Report") #4
+eventdatacols <- c("Number_of_Affected_Customers",
+                   "Start_Time", "Duration", "Total_Customer_Hours") #4
+predictcols <- c("SAIFI.With.MED", "SAIDI.With.MED")
+                # "SAIDI.With.MED.Minus.LOS",  #4
+reldata <- mergedat[, c(generalcols,saidacols, equipmentcols,
+                        eventdatacols, "Event_Type", predictcols)]
+colnames <- c("Year","Utility_ID", "Utility_Name",
+              "Size_Class", "State", "State_Code",
+              "NERC_Region", "Region", "Number_of_Customers","SAIDI_Without_MED",
+              "SAIFI_Without_MED", "Highest_Feeder_Voltage", "Highest_Feeder",
+              "Automatic_Report", "Number_of_Affected_Customers", "Start_Time",
+              "Duration", "Total_Customer_Hours", "Event_Type",
+              "SAIFI_With_MED", "SAIDI_With_MED")
+colnames(reldata) <- colnames
+reldata$Size_Class <- as.factor(reldata$Size_Class)
+reldata$State_Code <- as.factor(reldata$State_Code)
+reldata$NERC_Region <- as.factor(reldata$NERC_Region)
+reldata$Highest_Feeder <- as.factor(reldata$Highest_Feeder)
+reldata$Event_Type <- as.factor(reldata$Event_Type)
+reldata$SAIFI_With_MED <- as.numeric(reldata$SAIFI_With_MED)
+reldata$SAIFI_Without_MED <- as.numeric(reldata$SAIFI_Without_MED)
+
+```
+
+### Cleaned, Restricted, and Transformed Dataset
+
+##### In this report summary, the data columns appear as rows or lines. The twelve columns of variables from the DOE Reliability files and two new ones are listed on the left below. The new ones are Size_Class as large or small utility and the State_Code and Region. The data type for Region is factor. The State_Code column is identical to Region except the date type is numerical that correspond to region factor values such as "East_Coast." The first few data items of each variable can be seen on the right but nearly all of the 818 observations or records are not visible here. There is one record for each utility.
+
+```{r corrframe, echo=FALSE, fig.width = 9, fig.height= 6}
+
+modeldata  <- get_statecode(relreport)
+modeldata  <- na.omit(modeldata)
+modeldata <- modeldata[modeldata$Number_of_Customers > 80000,]
+
+# levels(modeldata$Size_Class)
+## "large" "small"
+# levels(modeldata$State_Code)
+## "AL_FL_GA"          "AR_LA_MS_TX"       "CA"               
+## "IN_MI_OH"          "KS_OK"             "ME_CT_MA_NH_VT_RI"
+## "NC_SC"             "Other"
+# levels(modeldata$NERC_Region)
+## [1] "FRCC" "MRO"  "NPCC" "RFC"  "SERC" "SPP"  "TRE"  "WECC"
+# levels(modeldata$Highest_Feeder)
+##  [1] "10" "15" "20" "25" "35" "36" "38" "40" "46" "50" "66" "69"
+# levels(modeldata$Event_Type)
+## [1] "all_other"    "earthquake"   "equipment"    "load_shed"   
+## [5] "thunderstorm" "tornado"      "weather"      "winter"
+
+modeldata[,"SAIDI_With_MED"] <- gsub(",", "", modeldata$SAIDI_With_MED)
+modeldata[,"SAIDI_With_MED"] <- as.numeric(modeldata$SAIDI_With_MED)
+modeldata[,"SAIDI_Without_MED"] <- gsub(",", "", modeldata$SAIDI_Without_MED)
+modeldata[,"SAIDI_Without_MED"]  <- as.numeric(modeldata$SAIDI_Without_MED)
+modeldata[,"SAIFI_With_MED"] <- gsub(",", "", modeldata$SAIFI_With_MED)
+modeldata[,"SAIFI_With_MED"] <- as.numeric(modeldata$SAIFI_With_MED)
+modeldata[,"SAIFI_Without_MED"]  <- gsub(",", "", modeldata$SAIFI_Without_MED)
+modeldata[,"SAIFI_Without_MED"]  <- as.numeric(modeldata$SAIFI_Without_MED)
+modeldata$SAIDI_With_MED_Minus_LOS <- gsub(",", "", modeldata$SAIDI_With_MED_Minus_LOS)
+modeldata$SAIDI_With_MED_Minus_LOS <- as.numeric(modeldata$SAIDI_With_MED_Minus_LOS)
+modeldata$SAIFI_With_MED_Minus_LOS <- gsub(",", "", modeldata$SAIFI_With_MED_Minus_LOS)
+modeldata$SAIFI_With_MED_Minus_LOS <- as.numeric(modeldata$SAIFI_With_MED_Minus_LOS)
+modeldata  <- na.omit(modeldata)
+modeldata$Size_Class <- as.numeric(modeldata$Size_Class)
+modeldata$Region <- as.factor(modeldata$State_Code)
+# z <- modeldata$State_Code
+# levels(z) <- c("New_England","East_Coast", "Midwest",
+#                "West_Coast","Mountain","Southeast", "South",
+#                "High_Plains", "Other")
+modeldata$State_Code <- as.numeric(modeldata$Region)
+str(modeldata)
+lencolvex <- dim(modeldata)[2]
+algovec <- c(4, 6,
+             8, 9, 10,
+             9, 10, 11,
+              12, 13, 14)
+algodata <- modeldata[, algovec][,-c(6,7)]
+numbercols <- dim(modeldata)[2]
+nameslist <- colnames(algodata)
+# The correlation function can compute the correlations between all possible pairs of columns.
+corvec <- cor(algodata)
+
+```
+
+<br><br>
+
+## Predicting SAIDA with Machine Learning
+
+##### We tried merging data from the OE-417 reports with the Reliability reports in an attempt to improve our SAIDA estimates by adding "regional" data including lost customer hours, number of customers, event duration, starting time, NERC region, outage cause, and power demand loss. But these additional columns had little correlation with the reported SAIDA figures even for utilities in the same region. We added a column identifying the region such as southeast and west coast that roughly matches the impacted areas on DOE reports across more than one state. 
+
+### Building the Model
+
+#### Correlation with SAIDI on Major Event Days
+
+##### Table-1 lists the correlations with respect to SAIDA on major event days.
+
+
+```{r corrtable, echo=FALSE, fig.width = 8, fig.height= 9, results='asis'}
+
+#corvec[,9]
+heatrelations <- (abs(corvec) > 0.1)
+m <- matrix(corvec, nrow=9)
+state_code <- rev(m[,2])
+Size_Class <- rev(m[,1])
+Number_of_Customers <- rev(m[,3])
+SAIDI_Without_MED <- rev(m[,4])
+SAIFI_Without_MED <- rev(m[,5])
+SAIFI_With_MED <- rev(m[,6])
+SAIFI_With_MED_Minus_LOS <- rev(m[,7])
+SAIDI_With_MED_Minus_LOS <- rev(m[,8])
+SAIDI_With_MED <- rev(m[,9])
+vec1 <- abs(as.vector(corvec))
+
+```
+
+
+```{r heatrelations, echo=FALSE, fig.width = 8, fig.height= 9, results='asis'}
+
+expanded <- expand.grid(row = colnames(algodata), col = colnames(algodata))
+expanded[,"correlation"] <- round(vec1,4)
+printframe <- expanded[expanded$col=="SAIDI_With_MED", -2]
+colnames(printframe) <- c("Variable", "Correlation")
+xt1 <- xtable(printframe)
+print(xtable(xt1, caption = "Table-1", align = "ccc", size="18pt"),
+       caption.placement ='top', caption.font = '18pt', include.rownames=FALSE, type = "html")
+
+Tab <- xtable::xtable(xt1, caption="\\tt Title")
+print(Tab, floating=TRUE, tabular.environment="longtable", size="\\fontsize{6pt}{8pt}\\selectfont")
+
+
+```
+
+##### The magnitude of the correlation between two random variables is always between 0 and 1. We exclude the last four rows for SAIDI_With_MED, SAIDI_With_MED_Minus_LOS, SAIFI_With_MED_Minus_LOS, and SAIFI_With_MED from the model because they are all based on the major event days that we are trying to predict. Perhaps they could help predict future years but that lies outside of our immediate work. Machine learning attempts to build an algorithm with a training set in order to predict performance in a testing set from the same population.   
+
+##### Having excluded the last four rows, the SAIDI data on ordinary days without major events in Row-4 has the greatest correlation at 0.57 with the estimated variable SAIDI_With_MED in the last row followed by SAIFI_Without_MED at 0.41 in Row-5. The State_Code or region in Row-2 and the number of Customers in Row-3 are next with correlation at 0.03. SAIDI_With_MED is correlated with itself as indicated by a 1 in the bottom row. The correlation value is also indicated by the blue shaded squares along the right edge below the center point in Figure-10 below. 
+
+<br><br>
+
+## Heat Map of Correlations 
+
+##### The map shows the correlations between all of the variables. The data in the table above appears in the right-most column in reverse order. The Size_Class is blank because only larger companies were evaluated.  
+
+```{r heatmap, echo=FALSE, fig.width = 8, fig.height= 9}
+
+library(RColorBrewer)
+
+rgbpalette <- colorRampPalette(c(rgb(0,0,0.99),rgb(0.99,0.99,0.99),rgb(0.8,0.2,0)),   space = "Lab")
+rgbpalette <- colorRampPalette(c(rgb(0,0,0.99,0),rgb(0,0,0.99,1)),   alpha = TRUE)
+par(mar=c(6,6,3,3))
+heatmap <- levelplot(correlation ~ row + col, expanded, col.regions=rgbpalette(120), 
+            xlab = " ", ylab=list(label=" "), 
+            scales=list(x=list(rot=90, cex=1.2, col='black'), y=list(cex=1.2, alternating=1, col='black')), row.values = c(4,3,2,1), column.values= c(4,3,2,1),
+            main="Correlation of Most Predictive Variables (r > 0.6)")
+ 
+  grid.arrange(textGrob("Figure-10", gp=gpar(fontsize=16, col="darkgreen")),
+          heatmap, ncol=1,
+          layout_matrix = rbind(c(1), c(2)),
+          heights=unit(c(30,200), c("mm", "mm")))
+
+```
+
+
+##### The squares along the diagonal from the top right to the lower left corner have a deep blue color by default because variables are always correlated with themselves. 
+
+##### The large square in the upper-right along the diagonal shows a certain degree of mutual correlation among variables as well as with the variable being predicted.      
+
+```{r machine learning2, echo=FALSE, fig.width = 9, fig.height= 6}
+
+saidadata <- modeldata$SAIDI_With_MED
+attributes(saidadata) <- NULL
+modeldata[,"SAIDI_With_MED"] <- saidadata
+ 
+set.seed(3433)
+inTrain <- createDataPartition(y=modeldata$SAIDI_With_MED, p=0.5, list=FALSE)
+testing   <- modeldata[-inTrain,]
+training  <- modeldata[inTrain, ]
+
+```
+
+```{r machine learning3, echo=FALSE, cache=TRUE}
+
+get_prediction_table <- function(fit, testing){
+    Actual_SAIDI <- testing[, "SAIDI_With_MED"]
+    region <- testing[, "Region"]
+    Prediction <- predict(fit, newdata=testing[,c(1:13)])
+    Utility <- testing[, "Utility_Name"]
+    Percent_Error <-
+        100*(testing[, "SAIDI_With_MED"] - Prediction)/ Prediction
+    big <- testing$Number_of_Customers > 100000
+    testingbig <- testing  #[big==big,]  ## We eliminated the small companies earlier
+    meanSAIDI <- aggregate(SAIDI_With_MED ~ Utility_Name, mean,
+                        data = testingbig)
+    # predictionbig <- Prediction[big]
+    # testingbig$Prediction <- predictionbig
+    prediction1b <- aggregate(Prediction ~ Utility_Name, mean,
+                        data = testingbig)
+    prediction1c <- merge(prediction1b, meanSAIDI, by = c("Utility_Name"))
+## Multiple years
+    first <- function(x){x[1]}
+    regioncode <- aggregate(Region ~ Utility_Name, first,
+                       data = testingbig)
+    customers <- aggregate(Number_of_Customers ~ Utility_Name, mean,
+                       data = testingbig)
+    dfpred1 <- merge(prediction1c, regioncode, by="Utility_Name")
+    dfpred1 <- merge(dfpred1, customers, by="Utility_Name")
+    #str(dfpred1)
+## Error Analysis
+    error <- 100*(dfpred1[, "SAIDI_With_MED"]- dfpred1[, "Prediction"])/ dfpred1[, "Prediction"]
+    dfpred1[, "Error"] <- error
+    squared_error <- (dfpred1[, "SAIDI_With_MED"]- dfpred1[, "Prediction"])^2
+    dfpred1[, "Squared_Error"] <- squared_error
+    Percent_Error <- 100*(dfpred1[, "SAIDI_With_MED"] -
+                          dfpred1[, "Prediction"])/ dfpred1[, "Prediction"]
+    dfpred1[, "Percent_Error"] <- Percent_Error
+    utility1 <- dfpred1[,"Utility_Name"]
+    customers <- as.numeric(dfpred1[,"Number_of_Customers"])
+    customers <- floor(customers)
+    actual <- dfpred1[,"SAIDI_With_MED"]
+    percent_Error1 <- dfpred1[,"Percent_Error"]
+    squared_error <- percent_Error1^2
+    predict <- dfpred1[,"Prediction"]
+    region <- dfpred1[,"Region"]
+    # dfpred1[,"Prediction_Model"] <- model
+    # Prediction_Model <- dfpred1[,"Prediction_Model"]
+    good <- grepl("\\d", predict)
+    predictiontable1 <- data.frame(utility1, region, customers,
+                predict, actual, percent_Error1,squared_error)[good,]
+    colnames(predictiontable1) <-
+        c("Utility" , "Region","Number_of_Customers",
+          "Prediction", "Actual","Percent_Error","Squared_Error")
+    predictiontable1 <- predictiontable1[, c("Utility" , "Region",
+            "Number_of_Customers", "Prediction","Actual",
+            "Percent_Error","Squared_Error")]
+}
+
+get_summary_table <- function(predictiontable, models){
+    Prediction_Model <- c()
+    Prediction <- c()
+    Mean_SAIDA <- c()
+    Actual <- c()
+    #mse_saida <- c()
+    Median_Error <- c()
+    RMSE <- c()
+    #Predicted_Error <- c()
+        for(i in seq_along(models)){
+        Prediction_Model[i] <-  models[i]
+        Predicted_SAIDA <- c()
+        mean_saida <- mean(predictiontable$Actual)
+        Mean_SAIDA[i] <- formatC(mean_saida, digits=4)
+        temp1 <- sum(predictiontable$Number_of_Customers *
+            predictiontable$Prediction) /
+            sum(predictiontable$Number_of_Customers)
+        Prediction[i] <- formatC(temp1, digits=3)
+        temp2 <- sum(predictiontable$Number_of_Customers *
+            predictiontable$Actual) /
+            sum(predictiontable$Number_of_Customers)
+        Actual[i] <- formatC(temp2, digits=3)
+        
+        temp3 <- (median(predictiontable$Squared_Error))^0.5
+        Median_Error[i] <- formatC(temp3, digits=3)
+        temp4 <- (mean(predictiontable$Squared_Error))^0.5
+         RMSE <- formatC(temp4, digits=3)
+    }
+    summarydf <- data.frame(Prediction_Model, Prediction, Actual, Median_Error, RMSE)
+    summarydf
+}
+
+# fitControl <- trainControl(## 3-fold CV
+#                            method = "repeatedcv",
+#                            number = 3,
+#                            ## repeated ten times
+#                            repeats = 3,
+#                            summaryFunction=twoClassSummary,
+#                             classProbs=T,
+#                             savePredictions = T)
+
+
+```
+
+## Algorithm 
+
+##### The train function in the caret package is used to build fitted machine-learning models.  
+
+```{r algo1, echo=FALSE, include=FALSE}
+    
+set.seed(32323)
+
+suppressMessages(
+
+rffit1 <- train(SAIDI_With_MED ~ SAIDI_Without_MED, method="rf",  data=training) )
+
+suppressMessages(
+                  
+rffit2 <- train(SAIDI_With_MED ~ SAIDI_Without_MED + State_Code, method="rf",  data=training))
+
+suppressMessages(
+                  
+rffit3 <- train(SAIDI_With_MED ~ SAIDI_Without_MED + SAIFI_Without_MED +         State_Code, method="rf",  data=training)
+)
+
+```
+
+```{r algo1show, echo=TRUE}
+    
+## set.seed(32323)
+## rffit1 <- train(SAIDI_With_MED ~ SAIDI_Without_MED, method="rf",  data=training) )
+
+## rffit2 <- train(SAIDI_With_MED ~ SAIDI_Without_MED + State_Code, method="rf",  data=training))
+
+## rffit3 <- train(SAIDI_With_MED ~ SAIDI_Without_MED + SAIFI_Without_MED + State_Code, method="rf",  data=training)
+
+
+```
+
+```{r algo2, echo=FALSE, fig.width = 12, fig.height= 6}
+
+                  #trControl = fitControl, #  verbose = FALSE,
+predictiontable1 <- get_prediction_table(rffit1, testing)
+predictiontable2 <- get_prediction_table(rffit2, testing)
+predictiontable3 <- get_prediction_table(rffit3, testing)
+
+#predtable
+#models <- c( model="SAIDA", "SAIDA + Region", "SAIDA + Region + SAIFI")
+t1 <- get_summary_table(predictiontable1,
+                        models=c("SAIDA"))
+t2 <- get_summary_table(predictiontable2,
+                        models=c("SAIDA  + SAIFI"))
+t3 <- get_summary_table(predictiontable3,
+                        models=c("SAIDA + SAIFI + Region"))
+
+predtable <- rbind(t1, t2, t3)
+#predtable
+
+xt3 <- xtable(predtable)
+
+```
+
+## Information Gain from Machine Learning
+
+##### The table shows that the uncertainty of the estimated SAIDA is reduced by the machine-learning process from 221.1 to 81.9 minutes per year by adjusting it for the SAIDA and SAIFI figures on ordinary days without major events. This is the benefit of the machine-learning model.
+
+```{r machinelearningxt2, echo=FALSE, fig.width = 12, fig.height= 6, results="asis"}
+
+sd(predictiontable1$Actual)
+print(xtable(xt3, caption = "Table-3: SAIDA Prediction Accuracy (minutes)", align = "cccccc", size="14pt"),
+           caption.placement ='top', include.rownames=FALSE, type = "html")
+
+```
+
+## Prediction Accuracy
+
+##### Although we have a better estimate, we might be disappointed the predictions are not accurate enough. The error in the far right column is the root mean square (RMS) of the percentage error (RMSE). The Median_Error in Column-4 is the root $median$ square of the percentage error.
+
+##### We could have perhaps reached similar accuracy using a linear regression model although we would miss any benefit from the random forest algorithm within the machine learning method. Here we are trying to illustrate how to use machine-learning. 
+
+```{r machine learning5, echo=FALSE, fig.width = 9, fig.height= 6}
+df <- predictiontable1
+fitpred <- function(df, region) {
+      fit <- lm(Actual[df$Region==region]
+                ~ Prediction[df$Region==region], data=df)
+      fit$coefficients
+}
+len <- 40*length(df$Prediction)
+lenend <- len + 1
+fitmidwest <- fitpred(df, region="Midwest")
+b1 <- fitmidwest[1]
+m1 <- fitmidwest[2]
+modelx <- seq(1,len,by=40)
+modely <- unlist(lapply(modelx, function(x){ m1 * x + b1}[[1]][1]))
+modelxend <- seq(2,lenend,by=1)
+modelyend <- unlist(lapply(modelxend, function(x){ m1 * x + b1}[[1]][1]))
+modeldat1 <- data.frame(modelx, modely, modelxend, modelyend)
+fitwest <- fitpred(df, region="West_Coast")
+b2 <- fitwest[1]
+m2 <- fitwest[2]
+modelx2 <- seq(1,len,by=40)
+modely2 <- unlist(lapply(modelx, function(x){ m2 * x + b2}[[1]][1]))
+modelxend2 <- seq(2,lenend,by=1)
+modelyend2 <- unlist(lapply(modelxend2, function(x){ m2 * x + b2}[[1]][1]))
+modeldat2 <- data.frame(modelx2, modely2, modelxend2, modelyend2)
+fitnew <- fitpred(df, region="New_England")
+b3 <- fitnew[1]
+m3 <- fitnew[2]
+modelx3 <- seq(1,len,by=40)
+modely3 <- unlist(lapply(modelx, function(x){ m3 * x + b3}[[1]][1]))
+modelxend3 <- seq(2,lenend,by=1)
+modelyend3 <- unlist(lapply(modelxend3, function(x){ m3 * x + b3}[[1]][1]))
+modeldat3 <- data.frame(modelx3, modely3, modelxend3, modelyend3)
+fitse <- fitpred(df, region="Southeast")
+b4 <- fitse[1]
+m4 <- fitse[2]
+modelx4 <- seq(1,len,by=40)
+modely4 <- unlist(lapply(modelx, function(x){ m4 * x + b4}[[1]][1]))
+modelxend4 <- seq(2,lenend,by=1)
+modelyend4 <- unlist(lapply(modelxend4, function(x){ m4 * x + b4}[[1]][1]))
+modeldat4 <- data.frame(modelx4, modely4, modelxend4, modelyend4)
+
+# b5 <- fitpred[1] +  fitpred[6]
+# m5 <- fitpred[2] +  fitpred[14]
+# modelx5 <- seq(1,len,by=40)
+# modely5 <- unlist(lapply(modelx, function(x){ m5 * x + b5}[[1]][1]))
+# modelxend5 <- seq(2,lenend,by=1)
+# modelyend5 <- unlist(lapply(modelxend5, function(x){ m5 * x + b5}[[1]][1]))
+# modeldat5 <- data.frame(modelx5, modely5, modelxend5, modelyend5)
+
+```
+
+### Predicted vs Actual SAIDA On Major Days
+
+#### The predicted SAIDA performance levels for the test group of companies with at least 80,000 customers are plotted below. These predictions are based on data from 2013 and 2014. The prediction for each company is based on its own SAIDI and SAIFI data on ordinary days without major events (SAIDA_Without_MED) and by its location or region. The region is also color-coded in plot. 
+
+<center>Figure-11</center>
+
+```{r confusion_matrix, echo=FALSE, fig.width=9, fig.height=6}
+
+ggplot(df, aes(Prediction, Actual)) +
+    geom_point(aes(color=Region), size=3, alpha=0.6) +
+guides(color=guide_legend(title="Region")) +
+scale_color_manual(values=c(
+    "#90CC30", "#905050", "#8080EE", "#CCCCCC",
+    "#20FF20", "#DDDD00", "#FFFF00", "#FF6600")) +
+scale_y_continuous(breaks = c(0,200,400,600,800),
+      minor_breaks = seq(0 , 10000, 100),
+      labels = c("0", "200" , "400" , "600", "800")) +
+coord_cartesian(xlim = c(0, 600), ylim = c(0, 820)) +
+ggtitle("Predicted SAIDA Figures for Larger Companies") +
+xlab("SAIFI Without Major Event Days (Minutes per Year)") +
+ylab("SAIDA With Major Event Days (Minutes per Year)") +
+theme(plot.title = element_text(hjust = 0.5,
+      color="#101010", size=18, face="bold.italic"),
+      panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+      panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+      axis.title.x = element_text(color="#101010", size=16),
+      axis.title.y = element_text(color="#101010", size=16),
+      text = element_text(size=16),
+      axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+      axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+      panel.background = element_rect(fill = "#FEFFFF",
+          colour = "#101010", size = 0.5, linetype = "solid"),
+     plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+#### The data is rather mixed, but there might be a few weak trends. For example, there are no yellow dots (Southeast) or bright green dots (New England) among the best SAIFI figures in the 200-400 range along the x-axis. On the other hand the highest dot below SAIFI of 200 and the highest dot of all are New England. With one exception, the orange dots for the West Coast are located near the middle.
+
+### Regression Line for Predictions
+
+#### Since there seems to be a few trends related to the dot color and region, separate regression lines for the Midwest, New_England, Southwest, and West_Coast are added to the plot below. The regression lines indicate our best guess for SAIDA figures by region.    
+
+<center>Figure-12</center>
+
+```{r figure12, echo=FALSE, fig.width=9, fig.height=6}
+
+ggplot(df, aes(Prediction, Actual)) +
+    geom_point(aes(color=Region), size=3, alpha=0.6) +
+guides(color=guide_legend(title="Region")) +
+scale_color_manual(values=c(
+    "#90CC30", "#905050", "#8080EE", "#CCCCCC",
+    "#30FF30", "#DDDD00", "#FFFF00", "#FF6600")) +
+scale_y_continuous(breaks = c(0,200,400,600,800),
+      minor_breaks = seq(0 , 10000, 100),
+      labels = c("0", "200" , "400" , "600", "800")) +
+coord_cartesian(xlim = c(0, 600), ylim = c(0, 820)) +
+ggtitle("Predictions with Best Fit Lines") +
+xlab("SAIFI Without Major Event Days (Minutes per Year)") +
+ylab("SAIDA With Major Event Days (Minutes per Year)") +
+geom_segment(aes(x = modelx, y = modely,
+      xend = modelxend, yend = modelyend),
+      data = modeldat1, size=1, color="#8080EE") +
+geom_segment(aes(x = modelx2, y = modely2,
+      xend = modelxend2, yend = modelyend2),
+      data = modeldat2, size=1, color="#FF8800") +
+geom_segment(aes(x = modelx3, y = modely3,
+          xend = modelxend3, yend = modelyend3),
+          data = modeldat3, size=1, color="#30FF30") +
+geom_segment(aes(x = modelx4, y = modely4,
+          xend = modelxend4, yend = modelyend4),
+          data = modeldat4, size=1, color="#FFFF00") +
+theme(plot.title = element_text(hjust = 0.5,
+      color="#101010", size=18, face="bold.italic"),
+      panel.grid.major = element_line(colour="#CCCCCC", size=0.5),
+      panel.grid.minor = element_line(colour="#EEEEEE", size=0.5),
+      axis.title.x = element_text(color="#101010", size=16),
+      axis.title.y = element_text(color="#101010", size=16),
+      text = element_text(size=16),
+      axis.text.x = element_text(angle=0, hjust=0.5, colour = "#101010"),
+      axis.text.y = element_text(angle=0, hjust=0.5, colour = "#101010"),
+      panel.background = element_rect(fill = "#FEFFFF",
+          colour = "#101010", size = 0.5, linetype = "solid"),
+     plot.background = element_rect(fill = "#FEFFFF"))
+
+```
+
+### Conclusion
+
+##### There are obvious ways to improve customer service include:
+
+##### (a) Procedures and training for likely failures, response teams
+##### (b) Buried and protected, waterproof power lines 
+##### (c) Regulations regarding trees and structures near power lines
+##### (d) Higher poles
+##### (e) Environmental testing for new equipment
+##### (f) Wind and ice load ratings for power lines and equipment
+##### (g) Tested waterproof equipment enclosures
+##### (h) Local backup generators at the neighborhood level 
+
+##### The cost of equipment improvements should be weighed against the economic losses associated with power losses that include not only revenue and repair costs for the utility, but perhaps even greater costs in lost wages, businesses, schools, hospitals, and patients at home without power. How would we charge our phones? Electricity improves the quality of life. The right private and government solution must be found, but this seems to be the kind of thing where the federal govenment has a role to play.   
+
+### Further Work
+
+##### Can we predict the SAIDI figure from the other data? Is it within the expected range for the area and type of utility? Is the data for year 2016 within the expected range? 
+
+
+```{r automaticdata, echo=FALSE, fig.width = 9, fig.height= 6}
+
+# dim(rel2013)[1]
+# dim(rel2014)[1]
+# dim(rel2015)[1]
+# dim(rel2013[rel2013$Outages.Recorded.Automatically=="Y",])[1]
+# dim(rel2014[rel2013$Outages.Recorded.Automatically=="Y",])[1]
+# dim(rel2015[rel2013$Outages.Recorded.Automatically=="Y",])[1]
+# 
+# dim(modeldata)
+# dim(training)
+# dim(testing)
+# dim(df)
+
+```
+
+<br><br>
+
+### Notes
+
+#####  [1] Jordan Wirfs-Brock of Inside Energy investigated the disturbance reports in August, 2014 and she maintains a website with data over a 15-year period. 
+
+http://insideenergy.org/2014/08/18/data-explore-15-years-of-power-outages/
+
+#####  [2] Raw Data: There are two groups of raw data Excel files.
+
+##### The first group are reliability files with SAIDA and SAIFI data. The files named Reliability_2013, Reliability_2014, and Reliability_2015 were taken from zip files named f8612013.zip, f8612014.zip, and f8612015.zip downloaded at this website.
+
+https://www.eia.gov/electricity/data/eia861/index.html
+
+##### The event time data is mined from files for Form OE-417 starting with the year 2011. Even though the reliability files are more general, the time data files begin with one named "2009_Annual_Summary.csv." These were summary files for government officials concerned with major outages called "Electric Disturbance Events" and have a special column where description such as vandalism and attack might be found. These Excel files were obtained from this website: 
+
+##### [3] The raw data is not available as a dataset which means this report can only be considered preliminary as a single program should ideally accomplish everything for reproducible analysis. DOE does not have an API or other method whereby these files can be downloaded automatically. A recognized or approved data source is needed for a formal report. 
+
+##### Thus the process began by manually downloading raw DOE files.  After downloading them, the files were placed in the project folder before opening with Excel and re-saving them as comma-separated-value (csv) text files without changes. 
+
+##### [4] We can read Excel files directly by R programs using packages such as RExcel. I did not do this for this preliminary report. Although somewhat involved to setup, Excel files could be automatically read but this is perhaps unreasonable for a preliminary study such as this. From the viewpoint of an R program, Excel files are equivalent to compressed binary files and are handled in a similar manner. Rather specialized package tools read and write to them directly.
+
+##### [5] The raw Excel files and the corresponding csv files are included in my Github repository for this project. Independent investigators would generally work to verify these files as reliable. 
+
+Raw Reliability Data:
+
+```{r rawreldata, echo=FALSE, fig.width = 9, fig.height= 6}
+
+str(reliability2013)
+
+```
+
+Raw Event Data:
+
+```{r raweventdata, echo=FALSE, fig.width = 9, fig.height= 6}
+
+str(rdata2014)
+
+```
 
 ##### [6] Processing and Transforming the Raw Data
 
-##### There are 1113 time records of power disturbances for the six years from 2011 to 2016. Of these, 509 records report the numbers of affected customers. The organized DOE reports made it possible to combine the data over multiple years in the same tables. It might be useful to have similar tables as dataset files that could be verified for rigorous studies beyond the manual downloading and conversion to comma-separated format that were performed to form them. 
+##### The reliability reports can be converted directly by R into data frame with twenty-two columns. There are 966 utility company records. Column-13 indicates whether or not power outages are recorded automatically. As we discuss in the report, we included only records for automatic recording which reduced the size of the study from 966 to 306 utilities. Figure-8 shows how automatic detection affects reported data. 
 
-<br><br>
+##### There are 1113 time records of power disturbances for the six years from 2011 to 2016 in the OE-417 event reports. Of these, 509 records report the numbers of affected customers. Date and time information were converted to a time-series data type in order to compute the duration of power outages and lost customer hours. There are many records for vandalism or attacks for which there is little or no effects on customers. The organized DOE reports made it possible to combine the data over multiple years in the same tables.
+
+##### Figure-8 shows how automatic detection in Column-13 affected reported data. As discussed in the report, only records for automatic recording were used which reduced the size of the study to about 300. 
+
+### Prediction Table for Testing Group
+
+```{r machinelearningxt3, echo=FALSE, fig.width = 9, fig.height= 6, results="asis"}
+
+xt4 <- xtable(predictiontable1)
+  print(xtable(xt4, caption = "Table-4", align = "cccccccc", size="14pt"),
+           caption.placement ='top', include.rownames=FALSE, type = "html")
+
+```
+
+##### [7] The code for this reproducible report is available at https://github.com/marcelMerchat/. 
 
 #### THE END
